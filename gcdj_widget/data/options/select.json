@@ -1,0 +1,30 @@
+{
+    "renderForm": true,
+    "fields": {
+        "Environmental-Packages": {
+            "hideInitValidationError": true,
+            "removeDefaultNone": false,
+            "id": "Environmental-Packages",
+            "helper": "choose on item here ...",
+            "emptySelectFirst": true
+        },
+        "MIxS-Checklists": {
+            "hideInitValidationError": true,
+            "removeDefaultNone": false,
+            "id": "MIxS-Checklists",
+            "helper": "choose on item here ...",
+            "emptySelectFirst": true
+        }
+    },
+    "form": {
+        "buttons": {
+            "submit": {}
+        },
+        "attributes": {
+            "action": "ACTION",
+            "onsubmit": "return submitSelectForm(this);",
+            "id": "gcdj_select_form",
+            "method": "post"
+        }
+    }
+}

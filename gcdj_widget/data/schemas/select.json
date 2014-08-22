@@ -1,0 +1,41 @@
+{
+    "type": "object",
+    "properties": {
+        "Environmental-Packages": {
+            "enum": [
+                "air",
+                "built environment",
+                "host-associated",
+                "human-associated",
+                "human-gut",
+                "human-oral",
+                "human-skin",
+                "human-vaginal",
+                "microbial mat/biofilm",
+                "miscellaneous natural or artificial environment",
+                "plant-associated",
+                "sediment",
+                "soil",
+                "wastewater/sludge",
+                "water"
+            ],
+            "title": "Environmental-Packages"
+        },
+        "MIxS-Checklists": {
+            "enum": [
+                "ba",
+                "eu",
+                "me",
+                "miens_c",
+                "miens_s",
+                "org",
+                "pl",
+                "vi"
+            ],
+            "title": "MIxS-Checklists"
+        }
+    },
+    "ui": "bootstrap",
+    "description": "Please Select one item from each combobox",
+    "title": "Package / Checklist selection"
+}
