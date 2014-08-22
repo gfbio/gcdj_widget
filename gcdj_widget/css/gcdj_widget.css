@@ -1,3 +1,9 @@
-@import url("alpaca.css");
-@import url("alpaca-bootstrap.css");
-@import url("bootstrap.min.css");
+@import url("http://www.alpacajs.org/lib/jquery-ui-latest/jquery-ui-latest.custom.css");
+@import url("//cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.css");
+@import url("http://www.alpacajs.org/css/alpaca.min.css");
+@import url("http://www.alpacajs.org/css/alpaca-bootstrap.min.css");
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css");
+
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox] {
+    margin-left: 0px;
+}
