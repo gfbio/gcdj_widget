@@ -9,15 +9,15 @@
 ```
 #!html
 
-<!-- gcdj_widget css and javascript imports -->
-    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-sliderAccess.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <script src="http://www.alpacajs.org/js/alpaca-full.min.js"></script>
-    <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/gcdj_widget.js"></script>
-    <link rel="stylesheet" href="http://alni.mpi-bremen.de/static/gcdj_widget/css/gcdj_widget.css">
+<!--  gcdj_widget css and javascript imports -->
+<script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/jquery-2.1.1.min.js"></script>
+<script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/jquery-ui.min.js"></script>
+<script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/jquery-ui-timepicker-addon.min.js"></script>
+<script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/jquery-ui-sliderAccess.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/alpaca-full.min.js"></script>
+<script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/gcdj_widget.js"></script>
+<link rel="stylesheet" href="http://alni.mpi-bremen.de/static/gcdj_widget/css/gcdj_widget.css">
 <!-- end of gcdj_widget css and javascript imports -->
 
 ```

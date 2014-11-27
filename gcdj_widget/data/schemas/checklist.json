@@ -64,6 +64,7 @@
                 "env_package": {
                     "title": "environmental package",
                     "enum": [
+                        "",
                         "air",
                         "built environment",
                         "host-associated",
@@ -93,6 +94,7 @@
                 "investigation_type": {
                     "title": "investigation type",
                     "enum": [
+                        "",
                         "eukaryote",
                         "bacteria_archaea",
                         "plasmid",
@@ -214,6 +216,7 @@
                 "env_package": {
                     "title": "environmental package",
                     "enum": [
+                        "",
                         "air",
                         "built environment",
                         "host-associated",
@@ -243,6 +246,7 @@
                 "investigation_type": {
                     "title": "investigation type",
                     "enum": [
+                        "",
                         "eukaryote",
                         "bacteria_archaea",
                         "plasmid",
@@ -400,6 +404,7 @@
                 "env_package": {
                     "title": "environmental package",
                     "enum": [
+                        "",
                         "air",
                         "built environment",
                         "host-associated",
@@ -429,6 +434,7 @@
                 "investigation_type": {
                     "title": "investigation type",
                     "enum": [
+                        "",
                         "eukaryote",
                         "bacteria_archaea",
                         "plasmid",
@@ -543,6 +549,7 @@
                 "env_package": {
                     "title": "environmental package",
                     "enum": [
+                        "",
                         "air",
                         "built environment",
                         "host-associated",
@@ -579,6 +586,7 @@
                 "investigation_type": {
                     "title": "investigation type",
                     "enum": [
+                        "",
                         "eukaryote",
                         "bacteria_archaea",
                         "plasmid",
@@ -671,6 +679,7 @@
                 "env_package": {
                     "title": "environmental package",
                     "enum": [
+                        "",
                         "air",
                         "built environment",
                         "host-associated",
@@ -700,6 +709,7 @@
                 "investigation_type": {
                     "title": "investigation type",
                     "enum": [
+                        "",
                         "eukaryote",
                         "bacteria_archaea",
                         "plasmid",
@@ -805,6 +815,7 @@
                 "env_package": {
                     "title": "environmental package",
                     "enum": [
+                        "",
                         "air",
                         "built environment",
                         "host-associated",
@@ -834,6 +845,7 @@
                 "investigation_type": {
                     "title": "investigation type",
                     "enum": [
+                        "",
                         "eukaryote",
                         "bacteria_archaea",
                         "plasmid",
@@ -943,6 +955,7 @@
                 "env_package": {
                     "title": "environmental package",
                     "enum": [
+                        "",
                         "air",
                         "built environment",
                         "host-associated",
@@ -972,6 +985,7 @@
                 "investigation_type": {
                     "title": "investigation type",
                     "enum": [
+                        "",
                         "eukaryote",
                         "bacteria_archaea",
                         "plasmid",
@@ -1075,6 +1089,7 @@
                 "env_package": {
                     "title": "environmental package",
                     "enum": [
+                        "",
                         "air",
                         "built environment",
                         "host-associated",
@@ -1104,6 +1119,7 @@
                 "investigation_type": {
                     "title": "investigation type",
                     "enum": [
+                        "",
                         "eukaryote",
                         "bacteria_archaea",
                         "plasmid",
@@ -1167,6 +1183,7 @@
                 "heat_cool_type": {
                     "title": "heating and cooling system type",
                     "enum": [
+                        "",
                         "radiant system",
                         "heat pump",
                         "forced air system",
@@ -1186,6 +1203,7 @@
                 "indoor_space": {
                     "title": "indoor space ",
                     "enum": [
+                        "",
                         "bedroom",
                         "office",
                         "bathroom",
@@ -1201,6 +1219,7 @@
                 "space_typ_state": {
                     "title": "space typical state ",
                     "enum": [
+                        "",
                         "typical occupied",
                         "typically unoccupied"
                     ],
@@ -1216,6 +1235,7 @@
                 "filter_type": {
                     "title": "filter type",
                     "enum": [
+                        "",
                         "particulate air filter",
                         "chemical air filter",
                         "low-MERV pleated media",
@@ -1255,6 +1275,7 @@
                 "build_occup_type": {
                     "title": "building occupancy type ",
                     "enum": [
+                        "",
                         "office",
                         "market",
                         "restaurant",
@@ -1284,6 +1305,7 @@
                 "building_setting": {
                     "title": "building setting",
                     "enum": [
+                        "",
                         "urban",
                         "suburban",
                         "exurban",
@@ -1295,6 +1317,7 @@
                 "light_type": {
                     "title": "light type",
                     "enum": [
+                        "",
                         "natural light",
                         "electric light",
                         "or none"
