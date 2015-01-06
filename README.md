@@ -6,8 +6,7 @@
 - No explicit installation or download needed
 - Just include the required javascript and css
 
-```
-#!html
+```html
 
 <!--  gcdj_widget css and javascript imports -->
 <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/jquery-2.1.1.min.js"></script>
@@ -24,8 +23,7 @@
 
 - Add a target container into your HTML code
 
-```
-#!html
+```!html
 <div id="target_1"></div>
 ```
 
@@ -40,8 +38,7 @@ The following settings can be customized:
 4. Choose to validate the json from the form against the "official" GCDJ validation webservice
 
 
-```
-#!html
+```javascript
 
 <script>
    var targetContainerId = "target_1";
