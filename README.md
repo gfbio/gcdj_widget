@@ -6,24 +6,26 @@
 - No explicit installation or download needed
 - Just include the required javascript and css
 
-```html
+```
+#!html
 
-<!--  gcdj_widget css and javascript imports -->
-<script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/jquery-2.1.1.min.js"></script>
-<script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/jquery-ui.min.js"></script>
-<script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/jquery-ui-timepicker-addon.min.js"></script>
-<script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/jquery-ui-sliderAccess.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/alpaca-full.min.js"></script>
-<script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/gcdj_widget.js"></script>
-<link rel="stylesheet" href="http://alni.mpi-bremen.de/static/gcdj_widget/css/gcdj_widget.css">
+<!-- gcdj_widget css and javascript imports -->
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-sliderAccess.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="http://www.alpacajs.org/js/alpaca-full.min.js"></script>
+    <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/gcdj_widget.js"></script>
+    <link rel="stylesheet" href="http://alni.mpi-bremen.de/static/gcdj_widget/css/gcdj_widget.css">
 <!-- end of gcdj_widget css and javascript imports -->
 
 ```
 
 - Add a target container into your HTML code
 
-```!html
+```
+#!html
 <div id="target_1"></div>
 ```
 
@@ -34,11 +36,16 @@ The following settings can be customized:
 
 1. Set the name of the target container inside a *.html file (div is expected here). This container will be populated with a variety of form fields.
 2. Set the url to the serverside componenent that will recieve the submitted form
-3. Implement a post render function to add custom code to the freshly rendered widget. E.g. add some logging or add some code to allow requests to your server-side code. In this method you will also have access to all widget elements, since rendering is finished and DOM access is possible now. Right now the widgets configuration provides an id for the submit button ("checklist_submit") of the form, to allow custom events.
+3. Implement a post render function to add custom code to the freshly rendered widget. E.g. add some logging or add some code to allow requests
+to your server-side code.In this method you will also have access to all widget elements,
+since rendering is finished and DOM access is possible now.
+Right now the widgets configuration provides an id for the submit buttons of the form, to allow the binding of custom events.
+(The id for the actual form submit is "checklist_submit", while the id for the submit button in the packagae/checklist selection step is "select_submit")
 4. Choose to validate the json from the form against the "official" GCDJ validation webservice
 
 
-```javascript
+```
+#!html
 
 <script>
    var targetContainerId = "target_1";

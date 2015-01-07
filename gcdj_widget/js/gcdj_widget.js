@@ -1,5 +1,5 @@
 /*!
- GCDJ_WIDGET VERSION 0.0.10
+ GCDJ_WIDGET VERSION 0.0.12
  */
 
 // create docs with: https://github.com/jsdoc3/jsdoc

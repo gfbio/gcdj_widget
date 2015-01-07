@@ -18,7 +18,9 @@
     },
     "form": {
         "buttons": {
-            "submit": {}
+            "submit": {
+                "id": "select_submit"
+            }
         },
         "attributes": {
             "action": "ACTION",

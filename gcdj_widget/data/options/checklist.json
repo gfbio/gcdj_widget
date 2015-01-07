@@ -5,14 +5,14 @@
             "fields": {
                 "collection_date": {
                     "hideInitValidationError": true,
-                    "type": "datetime",
-                    "showSecond": true,
-                    "timeFormat": "hh:mm:ss.lZ",
-                    "dateFormat": "yy-mm-dd",
-                    "separator": "T",
-                    "stepHour": 2,
-                    "stepMinute": 10,
-                    "stepSecond": 10
+                    "timepicker": {
+                        "dateFormat": "yy-mm-dd",
+                        "timeFormat": "hh:mm:ssZ",
+                        "separator": "T",
+                        "stepHour": 2,
+                        "stepMinute": 10,
+                        "stepSecond": 10
+                    }
                 }
             }
         },
@@ -20,14 +20,14 @@
             "fields": {
                 "collection_date": {
                     "hideInitValidationError": true,
-                    "type": "datetime",
-                    "showSecond": true,
-                    "timeFormat": "hh:mm:ss.lZ",
-                    "dateFormat": "yy-mm-dd",
-                    "separator": "T",
-                    "stepHour": 2,
-                    "stepMinute": 10,
-                    "stepSecond": 10
+                    "timepicker": {
+                        "dateFormat": "yy-mm-dd",
+                        "timeFormat": "hh:mm:ssZ",
+                        "separator": "T",
+                        "stepHour": 2,
+                        "stepMinute": 10,
+                        "stepSecond": 10
+                    }
                 }
             }
         },
@@ -35,14 +35,14 @@
             "fields": {
                 "collection_date": {
                     "hideInitValidationError": true,
-                    "type": "datetime",
-                    "showSecond": true,
-                    "timeFormat": "hh:mm:ss.lZ",
-                    "dateFormat": "yy-mm-dd",
-                    "separator": "T",
-                    "stepHour": 2,
-                    "stepMinute": 10,
-                    "stepSecond": 10
+                    "timepicker": {
+                        "dateFormat": "yy-mm-dd",
+                        "timeFormat": "hh:mm:ssZ",
+                        "separator": "T",
+                        "stepHour": 2,
+                        "stepMinute": 10,
+                        "stepSecond": 10
+                    }
                 }
             }
         },
@@ -50,14 +50,14 @@
             "fields": {
                 "collection_date": {
                     "hideInitValidationError": true,
-                    "type": "datetime",
-                    "showSecond": true,
-                    "timeFormat": "hh:mm:ss.lZ",
-                    "dateFormat": "yy-mm-dd",
-                    "separator": "T",
-                    "stepHour": 2,
-                    "stepMinute": 10,
-                    "stepSecond": 10
+                    "timepicker": {
+                        "dateFormat": "yy-mm-dd",
+                        "timeFormat": "hh:mm:ssZ",
+                        "separator": "T",
+                        "stepHour": 2,
+                        "stepMinute": 10,
+                        "stepSecond": 10
+                    }
                 }
             }
         },
@@ -65,14 +65,14 @@
             "fields": {
                 "collection_date": {
                     "hideInitValidationError": true,
-                    "type": "datetime",
-                    "showSecond": true,
-                    "timeFormat": "hh:mm:ss.lZ",
-                    "dateFormat": "yy-mm-dd",
-                    "separator": "T",
-                    "stepHour": 2,
-                    "stepMinute": 10,
-                    "stepSecond": 10
+                    "timepicker": {
+                        "dateFormat": "yy-mm-dd",
+                        "timeFormat": "hh:mm:ssZ",
+                        "separator": "T",
+                        "stepHour": 2,
+                        "stepMinute": 10,
+                        "stepSecond": 10
+                    }
                 }
             }
         },
@@ -80,14 +80,14 @@
             "fields": {
                 "collection_date": {
                     "hideInitValidationError": true,
-                    "type": "datetime",
-                    "showSecond": true,
-                    "timeFormat": "hh:mm:ss.lZ",
-                    "dateFormat": "yy-mm-dd",
-                    "separator": "T",
-                    "stepHour": 2,
-                    "stepMinute": 10,
-                    "stepSecond": 10
+                    "timepicker": {
+                        "dateFormat": "yy-mm-dd",
+                        "timeFormat": "hh:mm:ssZ",
+                        "separator": "T",
+                        "stepHour": 2,
+                        "stepMinute": 10,
+                        "stepSecond": 10
+                    }
                 }
             }
         },
@@ -95,14 +95,14 @@
             "fields": {
                 "collection_date": {
                     "hideInitValidationError": true,
-                    "type": "datetime",
-                    "showSecond": true,
-                    "timeFormat": "hh:mm:ss.lZ",
-                    "dateFormat": "yy-mm-dd",
-                    "separator": "T",
-                    "stepHour": 2,
-                    "stepMinute": 10,
-                    "stepSecond": 10
+                    "timepicker": {
+                        "dateFormat": "yy-mm-dd",
+                        "timeFormat": "hh:mm:ssZ",
+                        "separator": "T",
+                        "stepHour": 2,
+                        "stepMinute": 10,
+                        "stepSecond": 10
+                    }
                 }
             }
         },
@@ -110,182 +110,30 @@
             "fields": {
                 "collection_date": {
                     "hideInitValidationError": true,
-                    "type": "datetime",
-                    "showSecond": true,
-                    "timeFormat": "hh:mm:ss.lZ",
-                    "dateFormat": "yy-mm-dd",
-                    "separator": "T",
-                    "stepHour": 2,
-                    "stepMinute": 10,
-                    "stepSecond": 10
+                    "timepicker": {
+                        "dateFormat": "yy-mm-dd",
+                        "timeFormat": "hh:mm:ssZ",
+                        "separator": "T",
+                        "stepHour": 2,
+                        "stepMinute": 10,
+                        "stepSecond": 10
+                    }
                 }
             }
         }
     },
-    "fields": {
-        "env_package": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "rel_air_humidity": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "organism_count": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "estimated_size": {
-            "hideInitValidationError": true,
-            "helper": "300000 bp"
-        },
-        "isol_growth_condt": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "abs_air_humidity": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "alt": {
-            "hideInitValidationError": true,
-            "helper": "2500 m"
-        },
-        "ploidy": {
-            "hideInitValidationError": true,
-            "helper": "allopolyploid, polyploid"
-        },
-        "lat_lon": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "env_feature": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "heat_cool_type": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "submitted_to_insdc": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "carb_dioxide": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
+    "fields": {},
+    "MIxS-Checklists": {
         "collection_date": {
             "hideInitValidationError": true,
-            "helper": "HELPER FROM OPTIONS",
+            "type": "datetime",
             "showSecond": true,
-            "timeFormat": "hh:mm:ss.lZ",
             "dateFormat": "yy-mm-dd",
+            "timeFormat": "hh:mm:ss.lZ",
             "separator": "T",
             "stepHour": 2,
             "stepMinute": 10,
             "stepSecond": 10
-        },
-
-        "space_typ_state": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "ventilation_type": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "env_biome": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "investigation_type": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "target_gene": {
-            "hideInitValidationError": true,
-            "helper": "16S rRNA, 18S rRNA, nif, amoA, rpo"
-        },
-        "geo_loc_name": {
-            "hideInitValidationError": true,
-            "helper": "Germany:Sylt:Hausstrand"
-        },
-        "building_setting": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "typ_occupant_dens": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "project_name": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "assembly": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "seq_meth": {
-            "hideInitValidationError": true,
-            "helper": "Sanger dideoxysequencing, pyrosequencing, polony"
-        },
-        "ref_biomaterial": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "filter_type": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "env_material": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "occup_samp": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "num_replicons": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "build_occup_type": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "occupant_dens_samp": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "air_temp": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "finishing_strategy": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "propagation": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "depth": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "indoor_space": {
-            "hideInitValidationError": true,
-            "helper": ""
-        },
-        "elev": {
-            "hideInitValidationError": true,
-            "helper": "5000 m"
-        },
-        "light_type": {
-            "hideInitValidationError": true,
-            "helper": ""
         }
     },
     "form": {
