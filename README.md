@@ -34,7 +34,7 @@ The following settings can be customized:
 
 1. Set the name of the target container inside a *.html file (div is expected here). This container will be populated with a variety of form fields.
 2. Set the url to the serverside componenent that will recieve the submitted form
-3. Implement a post render function to add custom code to the freshly rendered widget. E.g. add some logging or add some code to allow requests to your server-side code
+3. Implement a post render function to add custom code to the freshly rendered widget. E.g. add some logging or add some code to allow requests to your server-side code. In this method you will also have access to all widget elements, since rendering is finished and DOM access is possible now. Right now the widgets configuration provides an id for the submit button ("checklist_submit") of the form, to allow custom events.
 4. Choose to validate the json from the form against the "official" GCDJ validation webservice
 
 
