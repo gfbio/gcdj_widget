@@ -1,0 +1,114 @@
+{
+    "file_upload": {
+        "file_upload": {
+            "type": "file",
+            "id": "fileinput",
+            "label": "Upload JSON file",
+            "helper": "Upload a file to pre-fill form-fields."
+        }
+    },
+    "me": {
+        "collection_date": {
+            "hideInitValidationError": true,
+            "timepicker": {
+                "dateFormat": "yy-mm-dd",
+                "timeFormat": "hh:mm:ssZ",
+                "separator": "T",
+                "stepHour": 2,
+                "stepMinute": 10,
+                "stepSecond": 10
+            }
+        }
+    },
+    "vi": {
+        "collection_date": {
+            "hideInitValidationError": true,
+            "timepicker": {
+                "dateFormat": "yy-mm-dd",
+                "timeFormat": "hh:mm:ssZ",
+                "separator": "T",
+                "stepHour": 2,
+                "stepMinute": 10,
+                "stepSecond": 10
+            }
+        }
+    },
+    "eu": {
+        "collection_date": {
+            "hideInitValidationError": true,
+            "timepicker": {
+                "dateFormat": "yy-mm-dd",
+                "timeFormat": "hh:mm:ssZ",
+                "separator": "T",
+                "stepHour": 2,
+                "stepMinute": 10,
+                "stepSecond": 10
+            }
+        }
+    },
+    "pl": {
+        "collection_date": {
+            "hideInitValidationError": true,
+            "timepicker": {
+                "dateFormat": "yy-mm-dd",
+                "timeFormat": "hh:mm:ssZ",
+                "separator": "T",
+                "stepHour": 2,
+                "stepMinute": 10,
+                "stepSecond": 10
+            }
+        }
+    },
+    "ba": {
+        "collection_date": {
+            "hideInitValidationError": true,
+            "timepicker": {
+                "dateFormat": "yy-mm-dd",
+                "timeFormat": "hh:mm:ssZ",
+                "separator": "T",
+                "stepHour": 2,
+                "stepMinute": 10,
+                "stepSecond": 10
+            }
+        }
+    },
+    "miens_s": {
+        "collection_date": {
+            "hideInitValidationError": true,
+            "timepicker": {
+                "dateFormat": "yy-mm-dd",
+                "timeFormat": "hh:mm:ssZ",
+                "separator": "T",
+                "stepHour": 2,
+                "stepMinute": 10,
+                "stepSecond": 10
+            }
+        }
+    },
+    "miens_c": {
+        "collection_date": {
+            "hideInitValidationError": true,
+            "timepicker": {
+                "dateFormat": "yy-mm-dd",
+                "timeFormat": "hh:mm:ssZ",
+                "separator": "T",
+                "stepHour": 2,
+                "stepMinute": 10,
+                "stepSecond": 10
+            }
+        }
+    },
+    "org": {
+        "collection_date": {
+            "hideInitValidationError": true,
+            "timepicker": {
+                "dateFormat": "yy-mm-dd",
+                "timeFormat": "hh:mm:ssZ",
+                "separator": "T",
+                "stepHour": 2,
+                "stepMinute": 10,
+                "stepSecond": 10
+            }
+        }
+    }
+}

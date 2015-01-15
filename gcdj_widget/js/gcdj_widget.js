@@ -1,24 +1,24 @@
 /*!
- GCDJ_WIDGET VERSION 0.0.12
+ GCDJ_WIDGET VERSION 0.0.13
  */
-
-// create docs with: https://github.com/jsdoc3/jsdoc
+/*jslint browser: true*/
+/*global $, jQuery, targetContainerId, checkListFormAction, postRenderAction, validateUsingWebservice, initialDataLocation, initialData*/
 
 /**
- * Pointing to the resource that provides the checklist json-schema used to render the GCDJ widget
+* Pointing to the resource that provides a collection of MiXS-lists used to render the GCDJ widget
+* @constant
+* @type {string}
+* @default
+*/
+var checkListPackagesLocation = 'http://alni.mpi-bremen.de/widget_schemas/checklist_packages';
+
+/**
+ * Pointing to the resource that provides the options used by alpaca, corresponding to the MiXS-lists defined above
  * @constant
  * @type {string}
  * @default
  */
-var checkListSchemaLocation = 'http://alni.mpi-bremen.de/widget_schemas/checklist';
-
-/**
- * Pointing to the resource that provides the checklist options used when rendering the GCDJ widget
- * @constant
- * @type {string}
- * @default
- */
-var checkListOptionsLocation = 'http://alni.mpi-bremen.de/widget_options/checklist';
+var checkListPackageOptionsLocation = 'http://alni.mpi-bremen.de/widget_options/checklist_options';
 
 /**
  * Pointing to the resource that provides the select-box json-schema used when rendering the selection of package / checklist
@@ -36,6 +36,7 @@ var selectSchemaLocation = 'http://alni.mpi-bremen.de/widget_schemas/select';
  */
 var selectOptionsLocation = 'http://alni.mpi-bremen.de/widget_options/select';
 
+
 /**
  * A container object to bundle the URLs of select-schema and options, which will be handled over when calling alcaca-js
  * @type {Object}
@@ -45,31 +46,75 @@ var selectInputBundle = {
     'schemaSource': selectSchemaLocation
 };
 
-/** This functions wraps the rendering of the package/checklist selection from for the defined target-container */
-function renderSelectForm() {
-    $('#' + targetContainerId).alpaca(selectInputBundle);
-}
+/**
+ * A container object keeping the json-schema definitions needed to render the package/checklist form.
+ * @type {Object}
+ * @default
+ */
+var checkListPackages = {};
 
 /**
  * A container object keeping the options needed to render the package/checklist form.
  * @type {Object}
  * @default
  */
-var checkListOptions = {};
+var packageOptions = {};
 
 /**
- * A container object keeping the json-schema needed to render the package/checklist form.
+ * A container object to store data used to prefill the widgets formfields. Used when data is provided via presenting a url or assigning it directly
  * @type {Object}
  * @default
  */
-var checkListSchema = {};
+var checkListData = {};
 
 /**
- * The prefix that is used when dynamically referencing different schema-definitions. E.g. when selection a certain package/checklist combination
- * @type {string}
+ * An array to store the selection of MiXS-checklists that should be rendered. Fill with 1-N checklist names.
+ * @type {Array}
  * @default
  */
-var definitionsPrefix = '#/definitions/';
+var checklistSelection = [];
+
+/**
+ * A container object containing a stub of the options needed to render the package/checklist form.
+ * @type {Object}
+ * @default
+ */
+var checkListOptions = {
+    "fields": {},
+    "renderForm": true,
+    "form": {
+        "buttons": {
+            "reset": {},
+            "submit": {
+                "id": "checklist_submit"
+            }
+        },
+        "attributes": {
+            "action": "ACTION",
+            "onsubmit": "return submitCheckListForm(this);",
+            "id": "gcdj_checklist_form",
+            "method": "post"
+        }
+    }
+};
+
+/**
+ * A container object containing a stub of the json-schema needed to render the package/checklist form.
+ * @type {Object}
+ * @default
+ */
+var checkListSchema = {
+    "description": "Please fill form fields below",
+    "title": "Package / Checklist form",
+    "ui": "bootstrap",
+    "type": "object",
+    "properties": {
+        "file_upload": {
+            "type": "string",
+            "format": "uri"
+        }
+    }
+};
 
 /**
  * Once alpaca rendered the widget and the actual form is known to the DOM-tree it will be assigned to this var, thus making the form available beyond the scope of alpacas postRender event
@@ -133,7 +178,19 @@ var formPassedValidation = false;
  * When called, this function will append a hidden field to the form rendered by alpaca, to make the actual json-content available in the form submit
  * @param {Object} gcdjson
  */
+function renderSelectForm() {
+    'use strict';
+    // if selectform is rendered, a selection via this form is desired, so empty existing array ...
+    checklistSelection = [];
+    $('#' + targetContainerId).alpaca(selectInputBundle);
+}
+
+/**
+ * When called, this function will append a hidden field to the form rendered by alpaca, to make the actual json-content available in the form submit
+ * @param {Object} gcdjson
+ */
 function addJsonFormField(gcdjson) {
+    'use strict';
     $('<input />').attr('type', 'hidden')
         .attr('name', 'gcdjson')
         .attr('value', JSON.stringify(gcdjson))
@@ -146,22 +203,21 @@ function addJsonFormField(gcdjson) {
  * @returns {boolean}
  */
 function onSuccess(data) {
+    'use strict';
     $('#' + feedbackId).empty();
-    if (data['gcdj_valid']) {
+    if (data.gcdj_valid) {
         $('#' + feedbackId).css('marginLeft', '30px');
         $('#' + feedbackId).append('<h4>' + feedbackSucces + '</h4>');
         return true;
     }
-    else {
-        $('#' + feedbackId).css('marginLeft', '30px');
-        $('#' + feedbackId).append('<h4>' + feedbackHeader + '</h4>');
-        $('#' + feedbackId).append('<ul>');
-        $.each(data['errors'], function (index, value) {
-            $('#' + feedbackId).append('<li>' + value + '</li>');
-        });
-        $('#' + feedbackId).append('</ul>');
-        return false;
-    }
+    $('#' + feedbackId).css('marginLeft', '30px');
+    $('#' + feedbackId).append('<h4>' + feedbackHeader + '</h4>');
+    $('#' + feedbackId).append('<ul>');
+    $.each(data['errors'], function (index, value) {
+        $('#' + feedbackId).append('<li>' + value + '</li>');
+    });
+    $('#' + feedbackId).append('</ul>');
+    return false;
 }
 
 /**
@@ -170,6 +226,7 @@ function onSuccess(data) {
  * @returns {boolean}
  */
 function submitCheckListForm(form) {
+    'use strict';
     return true;
 }
 
@@ -177,17 +234,37 @@ function submitCheckListForm(form) {
  * This function adds a div with to the targetContainer-div, to later display validation messages
  */
 function prepareFeedbackContainer() {
-    div = document.createElement('div');
+    'use strict';
+    var div = document.createElement('div');
     div.id = feedbackId;
     $('#' + targetContainerId).append(div);
 }
 
 /**
- * This hack offers the possibility to check the 'validateUsingWebservice' property is set anywhere
+ * This hack offers the possibility to check if the 'validateUsingWebservice' property is set anywhere
  * @returns {boolean}
  */
 var isValidationTriggerSet = function () {
-    return !(typeof validateUsingWebservice === 'undefined');
+    'use strict';
+    return (typeof validateUsingWebservice !== 'undefined');
+};
+
+/**
+ * This hack offers the possibility to check the 'initialDataLocation' property is set anywhere
+ * @returns {boolean}
+ */
+var isInitialDataLocationSet = function () {
+    'use strict';
+    return (typeof initialDataLocation !== 'undefined');
+};
+
+/**
+ * This hack offers the possibility to check the 'initialData' property is set anywhere
+ * @returns {boolean}
+ */
+var isInitialDataSet = function () {
+    'use strict';
+    return (typeof initialData !== 'undefined');
 };
 
 /**
@@ -199,9 +276,7 @@ var useWebServiceValidation = function () {
     if (isValidationTriggerSet()) {
         return validateUsingWebservice;
     }
-    else {
-        return true;
-    }
+    return true;
 };
 
 /**
@@ -209,40 +284,60 @@ var useWebServiceValidation = function () {
  * @param gcdjson
  */
 function add_missing_keys(gcdjson) {
+    'use strict';
     for (var key in boolean_fields) {
-        if ($.inArray(boolean_fields[key], gcdjson) == -1) {
+        if ($.inArray(boolean_fields[key], gcdjson) === -1) {
             gcdjson[boolean_fields[key]] = false;
         }
     }
 }
 
-
 /**
  * This function actually performs the calls to let alpacajs render the form for a given checklist/package combination.
- * Adds custom javascript code that, if provided, is executed after rendering. Adds the feedbackcontainers
+ * Adds custom javascript code that, if provided, is executed after rendering. Adds the feedback-container and
  * Takes care of the optional web-service validation
+ * @param prefillData if provided this data is used to prefill the formfields
  */
-function renderCheckListForm() {
-    checkListOptions['form']['attributes']['action'] = checkListFormAction;
-    checkListSchema['options'] = checkListOptions;
-    checkListSchema['schema'] = checkListSchema;
-    checkListSchema['postRender'] = function (form) {
+function renderCheckListForm(prefillData) {
+    'use strict';
+    $('#' + targetContainerId).empty();
+    var widget_schema = {};
+    checkListOptions.form.attributes.action = checkListFormAction;
+    $.extend(checkListOptions.fields, packageOptions['file_upload']);
+
+    for (var i = 0; i < checklistSelection.length; ++i) {
+        if (packageOptions.hasOwnProperty(checklistSelection[i])) {
+            $.extend(checkListOptions.fields, packageOptions[checklistSelection[i]]);
+        }
+        if (checkListPackages.hasOwnProperty(checklistSelection[i])) {
+            $.extend(checkListSchema.properties, checkListPackages[checklistSelection[i]]);
+        }
+    }
+    widget_schema.options = checkListOptions;
+    widget_schema.schema = checkListSchema;
+
+    // TODO: alpaca widget with fixed package tuple and NO $ref include (automatic ws schema+options)
+    if (typeof prefillData !== 'undefined' && !$.isEmptyObject(prefillData)) {
+        widget_schema.data = prefillData;
+    }
+
+    widget_schema.postRender = function (form) {
         postRenderAction();
         prepareFeedbackContainer();
+        //add onchange event for file input field
+        $('#fileinput').on('change', function () {
+            readSingleFile(this);
+        });
         globalForm = form;
     };
-    $('#' + targetContainerId).alpaca(checkListSchema);
+    $('#' + targetContainerId).alpaca(widget_schema);
 
     if (useWebServiceValidation()) {
         $('#checklist_submit').click(function (event) {
             if (!formPassedValidation) {
                 event.preventDefault();
-                var formJson = globalForm.getValue();
-                var gcdjson = $.extend({}, formJson['Environmental-Packages'],
-                    formJson['MIxS-Checklists']);
-
+                var gcdjson = globalForm.getValue();
                 add_missing_keys(gcdjson);
-
                 var url = 'http://alni.mpi-bremen.de/validate?checklist=' + checklist + '&package=' + pack;
                 var jqxhr = $.post(url, {'gcdjson': JSON.stringify(gcdjson)},
                     function (data) {
@@ -261,9 +356,7 @@ function renderCheckListForm() {
         });
     }
     else {
-        var formJson = globalForm.getValue();
-        var gcdjson = $.extend({}, formJson['Environmental-Packages'],
-            formJson['MIxS-Checklists']);
+        var gcdjson = globalForm.getValue();
         addJsonFormField(gcdjson);
     }
 }
@@ -274,9 +367,10 @@ function renderCheckListForm() {
  * @param {Object} schema_properties
  */
 function extract_boolean_fields(schema_properties) {
+    'use strict';
     for (var key in schema_properties) {
         if (schema_properties.hasOwnProperty(key)) {
-            if (schema_properties[key]['type'] == 'boolean') {
+            if (schema_properties[key].type === 'boolean') {
                 boolean_fields[boolean_fields.length] = key;
             }
         }
@@ -290,32 +384,83 @@ function extract_boolean_fields(schema_properties) {
  * @returns {boolean}
  */
 function submitSelectForm(form) {
+    'use strict';
     $('form#gcdj_select_form').submit(function (event) {
         pack = $('#Environmental-Packages').val();
         checklist = $('#MIxS-Checklists').val();
-        checkListSchema['properties']['Environmental-Packages']['$ref'] = definitionsPrefix + pack;
-        checkListSchema['properties']['MIxS-Checklists']['$ref'] = definitionsPrefix + checklist;
-        $('#' + targetContainerId).empty();
-
-        extract_boolean_fields(checkListSchema['definitions'][checklist]['properties']);
-        extract_boolean_fields(checkListSchema['definitions'][pack]['properties']);
-
-        renderCheckListForm();
+        checklistSelection.push(pack);
+        checklistSelection.push(checklist);
+        renderCheckListForm(checkListData);
         event.preventDefault();
     });
     return true;
 }
 
 /**
+ * Reads content of file, once it has completed the upload
+ * @param evt
+ */
+function readSingleFile(evt) {
+    'use strict';
+    var file = evt.files[0];
+    if (file) {
+        var r = new FileReader();
+        r.onload = function (e) {
+            var data = e.target.result;
+            data = JSON.parse(data);
+            // only accept proper gcdjjson as provided by webservice
+            if(data.hasOwnProperty('gcdjson')){
+                data = data.gcdjson;
+                renderCheckListForm(data);
+            }
+        };
+        r.readAsText(file);
+    }
+}
+
+/**
+ * This method wraps the asyncronous loading of checklist data and options, after loading requested files the rendering will be triggered
+ */
+function loadAndRenderPackageData() {
+    'use strict';
+    $.when(
+        $.getJSON(checkListPackagesLocation),
+        $.getJSON(checkListPackageOptionsLocation)
+    ).then(function (a, b) {
+        checkListPackages = a[0];
+        packageOptions = b[0];
+        renderSelectForm();
+        /***********  omitting select step *************/
+        //checklistSelection.push('air');
+        //checklistSelection.push('me');
+        //renderCheckListForm();
+        // or
+        //renderCheckListForm(checkListData);
+        /********************* *************************/
+    });
+}
+
+/**
  * Only call when document has been completly loaded !
  */
 $(document).ready(function () {
-    $.when(
-        $.getJSON(checkListOptionsLocation),
-        $.getJSON(checkListSchemaLocation)
-    ).then(function (a, b) {
-            checkListOptions = a[0];
-            checkListSchema = b[0];
-            renderSelectForm();
-        });
+    'use strict';
+    var dataLocation = '';
+    if (isInitialDataLocationSet()) {
+        dataLocation = initialDataLocation;
+    }
+    var jqxhr = $.getJSON(dataLocation, function (prefillData) {
+        if(prefillData.hasOwnProperty('gcdjson')) {
+            prefillData = prefillData.gcdjson;
+        }
+        checkListData = prefillData;
+    }).always(function() {
+        if (isInitialDataSet()) {
+            if(initialData.hasOwnProperty('gcdjson')) {
+                initialData = initialData.gcdjson;
+            }
+            $.extend(checkListData, initialData);
+        }
+        loadAndRenderPackageData();
+    });
 });
