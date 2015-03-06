@@ -1,9 +1,76 @@
-@import url("jquery-ui-latest.custom.css");
+@import url("jquery-ui.min.css");
 @import url("jquery-ui-timepicker-addon.min.css");
-@import url("alpaca.min.css");
-@import url("alpaca-bootstrap.min.css");
-@import url("//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css");
+@import url("alpaca.css");
+@import url("bootstrap.min.css");
+@import url("bootstrap-theme.min.css");
+@import url("font-awesome/css/font-awesome.min.css");
 
-.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox] {
-    margin-left: 0px;
+@font-face {
+    font-family: local_roboto;
+    src: url('../fonts/Roboto-Light.ttf');
+}
+
+body {
+    font-family: local_roboto, Helvetica, Arial, sans-serif;;
+    font-weight: 400;
+}
+
+/* (red) star(s) in front of required props title */
+.glyphicon-star:before {
+    content: "";
+}
+
+/* was ! in front of warings / errors now bolt */
+.glyphicon-exclamation-sign:before {
+    font-family: fontawesome;
+    content: "\f0e7";
+}
+
+/* was bootstrap info sign with cirle, now fa ..*/
+.glyphicon-info-sign:before {
+    font-family: fontawesome;
+    content: "\f101";
+}
+
+/* was plus sign for add item button in arrays, now fa*/
+.glyphicon-plus-sign:before {
+    font-family: fontawesome;
+    content: "\f067";
+    vertical-align: text-bottom;
+}
+
+/* was minus sign in buttons, now fa */
+.glyphicon-minus-sign:before {
+    font-family: fontawesome;
+    content: "\f068";
+    vertical-align: text-bottom;
+}
+
+/* was boostrap chevron down, now fa*/
+.glyphicon-chevron-down:before {
+    font-family: fontawesome;
+    content: "\f078";
+}
+
+/* was boostrap chevron up, now fa*/
+.glyphicon-chevron-up:before {
+    font-family: fontawesome;
+    content: "\f077";
+}
+
+/* corresponds with id in options, is id of input field
+this here will select surrounding div */
+div[data-alpaca-field-id="fileinput"] {
+    padding: 10px;
+    border: 1px #eee solid;
+    border-radius: 4px;
+}
+
+div[data-alpaca-field-id="fileinput"] > label {
+    font-size: 21px;
+    color: #333;
+    font-weight: 300;
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 20px;
 }

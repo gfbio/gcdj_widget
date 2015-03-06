@@ -1,1330 +1,1895 @@
 {
+    "file_upload": {
+        "file_upload": {
+            "type": "string",
+            "format": "uri"
+        }
+    },
     "vi": {
-        "env_feature": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Environmental feature level includes geographic environmental features. Compared to biome, feature is a descriptor of the more local environment. Examples include: harbor, cliff, or lake. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (feature)"
-        },
-        "project_name": {
-            "required": true,
-            "type": "string",
-            "description": "Name of the project within which the sequencing was organized",
-            "title": "project name"
-        },
-        "assembly": {
-            "title": "assembly",
-            "required": true,
-            "type": "object",
-            "properties": {
-                "text_value_2": {
-                    "type": "string"
-                },
-                "text_value_0": {
-                    "type": "string"
-                },
-                "text_value_1": {
-                    "type": "string"
-                }
+        "type": "object",
+        "properties": {
+            "env_feature": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Environmental feature level includes geographic environmental features. Compared to biome, feature is a descriptor of the more local environment. Examples include: harbor, cliff, or lake. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (feature)"
             },
-            "description": "How was the assembly done (e.g. with a text based assembler like phrap or a flowgram assembler); estimated error rate associated with the finished sequences (e.g. error rate of 1 in 1000 bp); and the method of calculation"
-        },
-        "submitted_to_insdc": {
-            "required": true,
-            "type": "boolean",
-            "description": "Depending on the study (large-scale e.g. done with next generation sequencing technology, or small-scale) sequences have to be submitted to SRA (Sequence Read Archive), DRA (DDBJ Read Archive) or via the classical Webin/Sequin systems to Genbank, ENA and DDBJ. Although this field is mandatory, it is meant as a self-test field, therefore it is not necessary to include this field in contextual data submitted to databases",
-            "title": "submitted to insdc"
-        },
-        "seq_meth": {
-            "required": true,
-            "type": "string",
-            "description": "Sequencing method used; e.g. Sanger, pyrosequencing, ABI-solid",
-            "title": "sequencing method"
-        },
-        "propagation": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "This field is specific to different taxa. For phages: lytic/lysogenic, for plasmids: incompatibility group (Note: there is the strong opinion to name phage propagation obligately lytic or temperate, therefore we also give this choice",
-            "title": "propagation"
-        },
-        "collection_date": {
-            "required": true,
-            "description": "The time of sampling, either as an instance (single point in time) or interval. In case no exact time is available, the date/time can be right truncated i.e. all of these are valid times: 2008-01-23T19:23:10+00:00; 2008-01-23T19:23:10; 2008-01-23; 2008-01; 2008; Except: 2008-01; 2008 all are ISO8601 compliant",
-            "title": "collection date",
-            "format": "datetime"
-        },
-        "env_package": {
-            "title": "environmental package",
-            "enum": [
-                "",
-                "air",
-                "built environment",
-                "host-associated",
-                "human-associated",
-                "human-skin",
-                "human-oral",
-                "human-gut",
-                "human-vaginal",
-                "microbial mat/biofilm",
-                "misc environment",
-                "plant-associated",
-                "sediment",
-                "soil",
-                "wastewater/sludge",
-                "water"
-            ],
-            "description": "MIGS/MIMS/MIMARKS extension for reporting of measurements and observations obtained from one or more of the environments where the sample was obtained. All environmental packages listed here are further defined in separate subtables. By giving the name of the environmental package, a selection of fields can be made from the subtables and can be reported",
-            "required": true
-        },
-        "env_biome": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Biomes are defined based on factors such as plant structures, leaf types, plant spacing, and other factors like climate. Biome should be treated as the descriptor of the broad ecological context of a sample. Examples include: desert, taiga, deciduous woodland, or coral reef. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (biome)"
-        },
-        "investigation_type": {
-            "title": "investigation type",
-            "enum": [
-                "",
-                "eukaryote",
-                "bacteria_archaea",
-                "plasmid",
-                "virus",
-                "organelle",
-                "metagenome",
-                "mimarks-survey",
-                "mimarks-specimen"
-            ],
-            "description": "Nucleic Acid Sequence Report is the root element of all MIGS/MIMS compliant reports as standardized by Genomic Standards Consortium. This field is either eukaryote,bacteria,virus,plasmid,organelle, metagenome,mimarks-survey, or mimarks-specimen",
-            "required": true
-        },
-        "isol_growth_condt": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Publication reference in the form of pubmed ID (pmid), digital object identifier (doi) or url for isolation and growth condition specifications of the organism/material",
-            "title": "isolation and growth condition"
-        },
-        "geo_loc_name": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "The geographical origin of the sample as defined by the country or sea name followed by specific region name. Country or sea names should be chosen from the INSDC country list (http://insdc.org/country.html), or the GAZ ontology (v 1.512) (http://purl.bioontology.org/ontology/GAZ)",
-            "title": "geographic location (country and/or sea,region)"
-        },
-        "env_material": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "The environmental material level refers to the material that was displaced by the sample, or material in which a sample was embedded, prior to the sampling event. Environmental material terms are generally mass nouns. Examples include: air, soil, or water. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (material)"
-        },
-        "lat_lon": {
-            "title": "geographic location (latitude and longitude)",
-            "required": true,
-            "type": "object",
-            "properties": {
-                "float_value_0": {
-                    "type": "number"
-                },
-                "float_value_1": {
-                    "type": "number"
-                }
+            "project_name": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Name of the project within which the sequencing was organized",
+                "title": "project name"
             },
-            "description": "The geographical origin of the sample as defined by latitude and longitude. The values should be reported in decimal degrees and in WGS84 system"
+            "assembly": {
+                "title": "assembly",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "assembly_method": {
+                        "title": "assembly_method",
+                        "enum": [
+                            "Celera",
+                            "Phrap",
+                            "TIGR ASSEMBLER",
+                            "Lasergene SeqMan",
+                            "Phred/Phrap/Consed",
+                            "Arachne ASSEMBLER"
+                        ],
+                        "required": true
+                    },
+                    "calulcation_method": {
+                        "required": true,
+                        "type": "string",
+                        "title": "calulcation_method"
+                    },
+                    "estimated_error_rate": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "exclusiveMinimum": false,
+                        "title": "estimated_error_rate",
+                        "required": true
+                    }
+                },
+                "description": "How was the assembly done (e.g. with a text based assembler like phrap or a flowgram assembler); estimated error rate associated with the finished sequences (e.g. error rate of 1 in 1000 bp); and the method of calculation"
+            },
+            "submitted_to_insdc": {
+                "required": true,
+                "type": "boolean",
+                "description": "Depending on the study (large-scale e.g. done with next generation sequencing technology, or small-scale) sequences have to be submitted to SRA (Sequence Read Archive), DRA (DDBJ Read Archive) or via the classical Webin/Sequin systems to Genbank, ENA and DDBJ. Although this field is mandatory, it is meant as a self-test field, therefore it is not necessary to include this field in contextual data submitted to databases",
+                "title": "submitted to insdc"
+            },
+            "seq_meth": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Sequencing method used; e.g. Sanger, pyrosequencing, ABI-solid",
+                "title": "sequencing method"
+            },
+            "propagation": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "This field is specific to different taxa. For phages: lytic/lysogenic, for plasmids: incompatibility group (Note: there is the strong opinion to name phage propagation obligately lytic or temperate, therefore we also give this choice",
+                "title": "propagation"
+            },
+            "collection_date": {
+                "format": "datetime",
+                "required": true,
+                "description": "The time of sampling, either as an instance (single point in time) or interval. In case no exact time is available, the date/time can be right truncated i.e. all of these are valid times: 2008-01-23T19:23:10+00:00; 2008-01-23T19:23:10; 2008-01-23; 2008-01; 2008; Except: 2008-01; 2008 all are ISO8601 compliant",
+                "title": "collection date"
+            },
+            "env_package": {
+                "title": "environmental package",
+                "enum": [
+                    "",
+                    "air",
+                    "built environment",
+                    "host-associated",
+                    "human-associated",
+                    "human-skin",
+                    "human-oral",
+                    "human-gut",
+                    "human-vaginal",
+                    "microbial mat/biofilm",
+                    "misc environment",
+                    "plant-associated",
+                    "sediment",
+                    "soil",
+                    "wastewater/sludge",
+                    "water"
+                ],
+                "description": "MIGS/MIMS/MIMARKS extension for reporting of measurements and observations obtained from one or more of the environments where the sample was obtained. All environmental packages listed here are further defined in separate subtables. By giving the name of the environmental package, a selection of fields can be made from the subtables and can be reported",
+                "required": true
+            },
+            "env_biome": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Biomes are defined based on factors such as plant structures, leaf types, plant spacing, and other factors like climate. Biome should be treated as the descriptor of the broad ecological context of a sample. Examples include: desert, taiga, deciduous woodland, or coral reef. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (biome)"
+            },
+            "investigation_type": {
+                "title": "investigation type",
+                "enum": [
+                    "",
+                    "eukaryote",
+                    "bacteria_archaea",
+                    "plasmid",
+                    "virus",
+                    "organelle",
+                    "metagenome",
+                    "mimarks-survey",
+                    "mimarks-specimen"
+                ],
+                "description": "Nucleic Acid Sequence Report is the root element of all MIGS/MIMS compliant reports as standardized by Genomic Standards Consortium. This field is either eukaryote,bacteria,virus,plasmid,organelle, metagenome,mimarks-survey, or mimarks-specimen",
+                "required": true
+            },
+            "isol_growth_condt": {
+                "title": "isolation and growth condition",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "reference_type": {
+                        "title": "reference_type",
+                        "enum": [
+                            "PMID",
+                            "DOI",
+                            "URL"
+                        ],
+                        "required": true
+                    },
+                    "reference": {
+                        "required": true,
+                        "type": "string",
+                        "title": "reference"
+                    }
+                },
+                "description": "Publication reference in the form of pubmed ID (pmid), digital object identifier (doi) or url for isolation and growth condition specifications of the organism/material"
+            },
+            "geo_loc_name": {
+                "pattern": "\\w+:\\w+:.+",
+                "required": true,
+                "type": "string",
+                "description": "The geographical origin of the sample as defined by the country or sea name followed by specific region name. Country or sea names should be chosen from the INSDC country list (http://insdc.org/country.html), or the GAZ ontology (v 1.512) (http://purl.bioontology.org/ontology/GAZ)",
+                "title": "geographic location (country and/or sea,region)"
+            },
+            "env_material": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "The environmental material level refers to the material that was displaced by the sample, or material in which a sample was embedded, prior to the sampling event. Environmental material terms are generally mass nouns. Examples include: air, soil, or water. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (material)"
+            },
+            "lat_lon": {
+                "title": "geographic location (latitude and longitude)",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "latitude": {
+                        "required": true,
+                        "type": "number",
+                        "title": "latitude"
+                    },
+                    "longitude": {
+                        "required": true,
+                        "type": "number",
+                        "title": "longitude"
+                    }
+                },
+                "description": "The geographical origin of the sample as defined by latitude and longitude. The values should be reported in decimal degrees and in WGS84 system"
+            }
         }
     },
     "wastewater/sludge": {
+        "type": "object",
+        "properties": {}
     },
     "eu": {
-        "env_feature": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Environmental feature level includes geographic environmental features. Compared to biome, feature is a descriptor of the more local environment. Examples include: harbor, cliff, or lake. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (feature)"
-        },
-        "finishing_strategy": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Was the genome project intended to produce a complete or draft genome, Coverage, the fold coverage of the sequencing expressed as 2x, 3x, 18x  etc, and how many contigs were produced for the genome",
-            "title": "finishing strategy"
-        },
-        "assembly": {
-            "title": "assembly",
-            "required": true,
-            "type": "object",
-            "properties": {
-                "text_value_2": {
-                    "type": "string"
-                },
-                "text_value_0": {
-                    "type": "string"
-                },
-                "text_value_1": {
-                    "type": "string"
-                }
+        "type": "object",
+        "properties": {
+            "env_feature": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Environmental feature level includes geographic environmental features. Compared to biome, feature is a descriptor of the more local environment. Examples include: harbor, cliff, or lake. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (feature)"
             },
-            "description": "How was the assembly done (e.g. with a text based assembler like phrap or a flowgram assembler); estimated error rate associated with the finished sequences (e.g. error rate of 1 in 1000 bp); and the method of calculation"
-        },
-        "submitted_to_insdc": {
-            "required": true,
-            "type": "boolean",
-            "description": "Depending on the study (large-scale e.g. done with next generation sequencing technology, or small-scale) sequences have to be submitted to SRA (Sequence Read Archive), DRA (DDBJ Read Archive) or via the classical Webin/Sequin systems to Genbank, ENA and DDBJ. Although this field is mandatory, it is meant as a self-test field, therefore it is not necessary to include this field in contextual data submitted to databases",
-            "title": "submitted to insdc"
-        },
-        "seq_meth": {
-            "required": true,
-            "type": "string",
-            "description": "Sequencing method used; e.g. Sanger, pyrosequencing, ABI-solid",
-            "title": "sequencing method"
-        },
-        "propagation": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "This field is specific to different taxa. For phages: lytic/lysogenic, for plasmids: incompatibility group (Note: there is the strong opinion to name phage propagation obligately lytic or temperate, therefore we also give this choice",
-            "title": "propagation"
-        },
-        "collection_date": {
-            "required": true,
-            "description": "The time of sampling, either as an instance (single point in time) or interval. In case no exact time is available, the date/time can be right truncated i.e. all of these are valid times: 2008-01-23T19:23:10+00:00; 2008-01-23T19:23:10; 2008-01-23; 2008-01; 2008; Except: 2008-01; 2008 all are ISO8601 compliant",
-            "title": "collection date",
-            "format": "datetime"
-        },
-        "project_name": {
-            "required": true,
-            "type": "string",
-            "description": "Name of the project within which the sequencing was organized",
-            "title": "project name"
-        },
-        "env_package": {
-            "title": "environmental package",
-            "enum": [
-                "",
-                "air",
-                "built environment",
-                "host-associated",
-                "human-associated",
-                "human-skin",
-                "human-oral",
-                "human-gut",
-                "human-vaginal",
-                "microbial mat/biofilm",
-                "misc environment",
-                "plant-associated",
-                "sediment",
-                "soil",
-                "wastewater/sludge",
-                "water"
-            ],
-            "description": "MIGS/MIMS/MIMARKS extension for reporting of measurements and observations obtained from one or more of the environments where the sample was obtained. All environmental packages listed here are further defined in separate subtables. By giving the name of the environmental package, a selection of fields can be made from the subtables and can be reported",
-            "required": true
-        },
-        "env_biome": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Biomes are defined based on factors such as plant structures, leaf types, plant spacing, and other factors like climate. Biome should be treated as the descriptor of the broad ecological context of a sample. Examples include: desert, taiga, deciduous woodland, or coral reef. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (biome)"
-        },
-        "investigation_type": {
-            "title": "investigation type",
-            "enum": [
-                "",
-                "eukaryote",
-                "bacteria_archaea",
-                "plasmid",
-                "virus",
-                "organelle",
-                "metagenome",
-                "mimarks-survey",
-                "mimarks-specimen"
-            ],
-            "description": "Nucleic Acid Sequence Report is the root element of all MIGS/MIMS compliant reports as standardized by Genomic Standards Consortium. This field is either eukaryote,bacteria,virus,plasmid,organelle, metagenome,mimarks-survey, or mimarks-specimen",
-            "required": true
-        },
-        "estimated_size": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "The estimated size of the genome prior to sequencing. Of particular importance in the sequencing of (eukaryotic) genome which could remain in draft form for a long or unspecified period.",
-            "title": "estimated size"
-        },
-        "isol_growth_condt": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Publication reference in the form of pubmed ID (pmid), digital object identifier (doi) or url for isolation and growth condition specifications of the organism/material",
-            "title": "isolation and growth condition"
-        },
-        "num_replicons": {
-            "required": true,
-            "type": "integer",
-            "description": "Reports the number of replicons in a nuclear genome of eukaryotes, in the genome of a bacterium or archaea or the number of segments in a segmented virus. Always applied to the haploid chromosome count of a eukaryote",
-            "title": "number of replicons"
-        },
-        "geo_loc_name": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "The geographical origin of the sample as defined by the country or sea name followed by specific region name. Country or sea names should be chosen from the INSDC country list (http://insdc.org/country.html), or the GAZ ontology (v 1.512) (http://purl.bioontology.org/ontology/GAZ)",
-            "title": "geographic location (country and/or sea,region)"
-        },
-        "env_material": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "The environmental material level refers to the material that was displaced by the sample, or material in which a sample was embedded, prior to the sampling event. Environmental material terms are generally mass nouns. Examples include: air, soil, or water. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (material)"
-        },
-        "ploidy": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "The ploidy level of the genome (e.g. allopolyploid, haploid, diploid, triploid, tetraploid). It has implications for the downstream study of duplicated gene and regions of the genomes (and perhaps for difficulties in assembly). For terms, please select terms listed under class ploidy (PATO:001374) of Phenotypic Quality Ontology (PATO), and for a browser of PATO (v 2013-10-28) please refer to http://purl.bioontology.org/ontology/PATO",
-            "title": "ploidy"
-        },
-        "lat_lon": {
-            "title": "geographic location (latitude and longitude)",
-            "required": true,
-            "type": "object",
-            "properties": {
-                "float_value_0": {
-                    "type": "number"
+            "finishing_strategy": {
+                "title": "finishing strategy",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "number_of_contigs": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "exclusiveMinimum": false,
+                        "title": "number_of_contigs",
+                        "required": true
+                    },
+                    "finishing_status": {
+                        "title": "finishing_status",
+                        "enum": [
+                            "complete",
+                            "draft"
+                        ],
+                        "required": true
+                    },
+                    "coverage": {
+                        "exclusiveMaximum": false,
+                        "title": "coverage",
+                        "exclusiveMinimum": false,
+                        "required": true,
+                        "maximum": 100,
+                        "minimum": 0,
+                        "type": "integer"
+                    }
                 },
-                "float_value_1": {
-                    "type": "number"
-                }
+                "description": "Was the genome project intended to produce a complete or draft genome, Coverage, the fold coverage of the sequencing expressed as 2x, 3x, 18x  etc, and how many contigs were produced for the genome"
             },
-            "description": "The geographical origin of the sample as defined by latitude and longitude. The values should be reported in decimal degrees and in WGS84 system"
+            "assembly": {
+                "title": "assembly",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "assembly_method": {
+                        "title": "assembly_method",
+                        "enum": [
+                            "Celera",
+                            "Phrap",
+                            "TIGR ASSEMBLER",
+                            "Lasergene SeqMan",
+                            "Phred/Phrap/Consed",
+                            "Arachne ASSEMBLER"
+                        ],
+                        "required": true
+                    },
+                    "calulcation_method": {
+                        "required": true,
+                        "type": "string",
+                        "title": "calulcation_method"
+                    },
+                    "estimated_error_rate": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "exclusiveMinimum": false,
+                        "title": "estimated_error_rate",
+                        "required": true
+                    }
+                },
+                "description": "How was the assembly done (e.g. with a text based assembler like phrap or a flowgram assembler); estimated error rate associated with the finished sequences (e.g. error rate of 1 in 1000 bp); and the method of calculation"
+            },
+            "submitted_to_insdc": {
+                "required": true,
+                "type": "boolean",
+                "description": "Depending on the study (large-scale e.g. done with next generation sequencing technology, or small-scale) sequences have to be submitted to SRA (Sequence Read Archive), DRA (DDBJ Read Archive) or via the classical Webin/Sequin systems to Genbank, ENA and DDBJ. Although this field is mandatory, it is meant as a self-test field, therefore it is not necessary to include this field in contextual data submitted to databases",
+                "title": "submitted to insdc"
+            },
+            "seq_meth": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Sequencing method used; e.g. Sanger, pyrosequencing, ABI-solid",
+                "title": "sequencing method"
+            },
+            "propagation": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "This field is specific to different taxa. For phages: lytic/lysogenic, for plasmids: incompatibility group (Note: there is the strong opinion to name phage propagation obligately lytic or temperate, therefore we also give this choice",
+                "title": "propagation"
+            },
+            "collection_date": {
+                "format": "datetime",
+                "required": true,
+                "description": "The time of sampling, either as an instance (single point in time) or interval. In case no exact time is available, the date/time can be right truncated i.e. all of these are valid times: 2008-01-23T19:23:10+00:00; 2008-01-23T19:23:10; 2008-01-23; 2008-01; 2008; Except: 2008-01; 2008 all are ISO8601 compliant",
+                "title": "collection date"
+            },
+            "project_name": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Name of the project within which the sequencing was organized",
+                "title": "project name"
+            },
+            "env_package": {
+                "title": "environmental package",
+                "enum": [
+                    "",
+                    "air",
+                    "built environment",
+                    "host-associated",
+                    "human-associated",
+                    "human-skin",
+                    "human-oral",
+                    "human-gut",
+                    "human-vaginal",
+                    "microbial mat/biofilm",
+                    "misc environment",
+                    "plant-associated",
+                    "sediment",
+                    "soil",
+                    "wastewater/sludge",
+                    "water"
+                ],
+                "description": "MIGS/MIMS/MIMARKS extension for reporting of measurements and observations obtained from one or more of the environments where the sample was obtained. All environmental packages listed here are further defined in separate subtables. By giving the name of the environmental package, a selection of fields can be made from the subtables and can be reported",
+                "required": true
+            },
+            "env_biome": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Biomes are defined based on factors such as plant structures, leaf types, plant spacing, and other factors like climate. Biome should be treated as the descriptor of the broad ecological context of a sample. Examples include: desert, taiga, deciduous woodland, or coral reef. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (biome)"
+            },
+            "investigation_type": {
+                "title": "investigation type",
+                "enum": [
+                    "",
+                    "eukaryote",
+                    "bacteria_archaea",
+                    "plasmid",
+                    "virus",
+                    "organelle",
+                    "metagenome",
+                    "mimarks-survey",
+                    "mimarks-specimen"
+                ],
+                "description": "Nucleic Acid Sequence Report is the root element of all MIGS/MIMS compliant reports as standardized by Genomic Standards Consortium. This field is either eukaryote,bacteria,virus,plasmid,organelle, metagenome,mimarks-survey, or mimarks-specimen",
+                "required": true
+            },
+            "estimated_size": {
+                "title": "estimated size",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "exclusiveMinimum": false,
+                        "title": "value",
+                        "required": true
+                    },
+                    "unit": {
+                        "title": "unit",
+                        "enum": ["bp"],
+                        "required": true
+                    }
+                },
+                "description": "The estimated size of the genome prior to sequencing. Of particular importance in the sequencing of (eukaryotic) genome which could remain in draft form for a long or unspecified period."
+            },
+            "isol_growth_condt": {
+                "title": "isolation and growth condition",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "reference_type": {
+                        "title": "reference_type",
+                        "enum": [
+                            "PMID",
+                            "DOI",
+                            "URL"
+                        ],
+                        "required": true
+                    },
+                    "reference": {
+                        "required": true,
+                        "type": "string",
+                        "title": "reference"
+                    }
+                },
+                "description": "Publication reference in the form of pubmed ID (pmid), digital object identifier (doi) or url for isolation and growth condition specifications of the organism/material"
+            },
+            "num_replicons": {
+                "required": true,
+                "type": "integer",
+                "description": "Reports the number of replicons in a nuclear genome of eukaryotes, in the genome of a bacterium or archaea or the number of segments in a segmented virus. Always applied to the haploid chromosome count of a eukaryote",
+                "title": "number of replicons"
+            },
+            "geo_loc_name": {
+                "pattern": "\\w+:\\w+:.+",
+                "required": true,
+                "type": "string",
+                "description": "The geographical origin of the sample as defined by the country or sea name followed by specific region name. Country or sea names should be chosen from the INSDC country list (http://insdc.org/country.html), or the GAZ ontology (v 1.512) (http://purl.bioontology.org/ontology/GAZ)",
+                "title": "geographic location (country and/or sea,region)"
+            },
+            "env_material": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "The environmental material level refers to the material that was displaced by the sample, or material in which a sample was embedded, prior to the sampling event. Environmental material terms are generally mass nouns. Examples include: air, soil, or water. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (material)"
+            },
+            "ploidy": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "The ploidy level of the genome (e.g. allopolyploid, haploid, diploid, triploid, tetraploid). It has implications for the downstream study of duplicated gene and regions of the genomes (and perhaps for difficulties in assembly). For terms, please select terms listed under class ploidy (PATO:001374) of Phenotypic Quality Ontology (PATO), and for a browser of PATO (v 2013-10-28) please refer to http://purl.bioontology.org/ontology/PATO",
+                "title": "ploidy"
+            },
+            "lat_lon": {
+                "title": "geographic location (latitude and longitude)",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "latitude": {
+                        "required": true,
+                        "type": "number",
+                        "title": "latitude"
+                    },
+                    "longitude": {
+                        "required": true,
+                        "type": "number",
+                        "title": "longitude"
+                    }
+                },
+                "description": "The geographical origin of the sample as defined by latitude and longitude. The values should be reported in decimal degrees and in WGS84 system"
+            }
         }
     },
     "human-vaginal": {
+        "type": "object",
+        "properties": {}
     },
     "host-associated": {
+        "type": "object",
+        "properties": {}
     },
     "soil": {
-        "depth": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Please refer to the definitions of depth in the environmental packages",
-            "title": "geographic location (depth)"
-        },
-        "elev": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "the elevation of the sampling site as measured by the vertical distance from mean sea level",
-            "title": "elevation"
+        "type": "object",
+        "properties": {
+            "depth": {
+                "title": "geographic location (depth)",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMinimum": false,
+                        "title": "value",
+                        "required": true
+                    },
+                    "unit": {
+                        "title": "unit",
+                        "enum": [
+                            "cm",
+                            "m"
+                        ],
+                        "required": true
+                    }
+                },
+                "description": "Please refer to the definitions of depth in the environmental packages"
+            },
+            "elev": {
+                "title": "elevation",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMinimum": false,
+                        "title": "value",
+                        "required": true
+                    },
+                    "unit": {
+                        "title": "unit",
+                        "enum": [
+                            "cm",
+                            "m"
+                        ],
+                        "required": true
+                    }
+                },
+                "description": "the elevation of the sampling site as measured by the vertical distance from mean sea level"
+            }
         }
     },
     "pl": {
-        "env_feature": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Environmental feature level includes geographic environmental features. Compared to biome, feature is a descriptor of the more local environment. Examples include: harbor, cliff, or lake. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (feature)"
-        },
-        "project_name": {
-            "required": true,
-            "type": "string",
-            "description": "Name of the project within which the sequencing was organized",
-            "title": "project name"
-        },
-        "assembly": {
-            "title": "assembly",
-            "required": true,
-            "type": "object",
-            "properties": {
-                "text_value_2": {
-                    "type": "string"
-                },
-                "text_value_0": {
-                    "type": "string"
-                },
-                "text_value_1": {
-                    "type": "string"
-                }
+        "type": "object",
+        "properties": {
+            "env_feature": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Environmental feature level includes geographic environmental features. Compared to biome, feature is a descriptor of the more local environment. Examples include: harbor, cliff, or lake. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (feature)"
             },
-            "description": "How was the assembly done (e.g. with a text based assembler like phrap or a flowgram assembler); estimated error rate associated with the finished sequences (e.g. error rate of 1 in 1000 bp); and the method of calculation"
-        },
-        "submitted_to_insdc": {
-            "required": true,
-            "type": "boolean",
-            "description": "Depending on the study (large-scale e.g. done with next generation sequencing technology, or small-scale) sequences have to be submitted to SRA (Sequence Read Archive), DRA (DDBJ Read Archive) or via the classical Webin/Sequin systems to Genbank, ENA and DDBJ. Although this field is mandatory, it is meant as a self-test field, therefore it is not necessary to include this field in contextual data submitted to databases",
-            "title": "submitted to insdc"
-        },
-        "seq_meth": {
-            "required": true,
-            "type": "string",
-            "description": "Sequencing method used; e.g. Sanger, pyrosequencing, ABI-solid",
-            "title": "sequencing method"
-        },
-        "propagation": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "This field is specific to different taxa. For phages: lytic/lysogenic, for plasmids: incompatibility group (Note: there is the strong opinion to name phage propagation obligately lytic or temperate, therefore we also give this choice",
-            "title": "propagation"
-        },
-        "collection_date": {
-            "required": true,
-            "description": "The time of sampling, either as an instance (single point in time) or interval. In case no exact time is available, the date/time can be right truncated i.e. all of these are valid times: 2008-01-23T19:23:10+00:00; 2008-01-23T19:23:10; 2008-01-23; 2008-01; 2008; Except: 2008-01; 2008 all are ISO8601 compliant",
-            "title": "collection date",
-            "format": "datetime"
-        },
-        "env_package": {
-            "title": "environmental package",
-            "enum": [
-                "",
-                "air",
-                "built environment",
-                "host-associated",
-                "human-associated",
-                "human-skin",
-                "human-oral",
-                "human-gut",
-                "human-vaginal",
-                "microbial mat/biofilm",
-                "misc environment",
-                "plant-associated",
-                "sediment",
-                "soil",
-                "wastewater/sludge",
-                "water"
-            ],
-            "description": "MIGS/MIMS/MIMARKS extension for reporting of measurements and observations obtained from one or more of the environments where the sample was obtained. All environmental packages listed here are further defined in separate subtables. By giving the name of the environmental package, a selection of fields can be made from the subtables and can be reported",
-            "required": true
-        },
-        "env_biome": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Biomes are defined based on factors such as plant structures, leaf types, plant spacing, and other factors like climate. Biome should be treated as the descriptor of the broad ecological context of a sample. Examples include: desert, taiga, deciduous woodland, or coral reef. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (biome)"
-        },
-        "investigation_type": {
-            "title": "investigation type",
-            "enum": [
-                "",
-                "eukaryote",
-                "bacteria_archaea",
-                "plasmid",
-                "virus",
-                "organelle",
-                "metagenome",
-                "mimarks-survey",
-                "mimarks-specimen"
-            ],
-            "description": "Nucleic Acid Sequence Report is the root element of all MIGS/MIMS compliant reports as standardized by Genomic Standards Consortium. This field is either eukaryote,bacteria,virus,plasmid,organelle, metagenome,mimarks-survey, or mimarks-specimen",
-            "required": true
-        },
-        "isol_growth_condt": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Publication reference in the form of pubmed ID (pmid), digital object identifier (doi) or url for isolation and growth condition specifications of the organism/material",
-            "title": "isolation and growth condition"
-        },
-        "geo_loc_name": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "The geographical origin of the sample as defined by the country or sea name followed by specific region name. Country or sea names should be chosen from the INSDC country list (http://insdc.org/country.html), or the GAZ ontology (v 1.512) (http://purl.bioontology.org/ontology/GAZ)",
-            "title": "geographic location (country and/or sea,region)"
-        },
-        "env_material": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "The environmental material level refers to the material that was displaced by the sample, or material in which a sample was embedded, prior to the sampling event. Environmental material terms are generally mass nouns. Examples include: air, soil, or water. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (material)"
-        },
-        "lat_lon": {
-            "title": "geographic location (latitude and longitude)",
-            "required": true,
-            "type": "object",
-            "properties": {
-                "float_value_0": {
-                    "type": "number"
-                },
-                "float_value_1": {
-                    "type": "number"
-                }
+            "project_name": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Name of the project within which the sequencing was organized",
+                "title": "project name"
             },
-            "description": "The geographical origin of the sample as defined by latitude and longitude. The values should be reported in decimal degrees and in WGS84 system"
+            "assembly": {
+                "title": "assembly",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "assembly_method": {
+                        "title": "assembly_method",
+                        "enum": [
+                            "Celera",
+                            "Phrap",
+                            "TIGR ASSEMBLER",
+                            "Lasergene SeqMan",
+                            "Phred/Phrap/Consed",
+                            "Arachne ASSEMBLER"
+                        ],
+                        "required": true
+                    },
+                    "calulcation_method": {
+                        "required": true,
+                        "type": "string",
+                        "title": "calulcation_method"
+                    },
+                    "estimated_error_rate": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "exclusiveMinimum": false,
+                        "title": "estimated_error_rate",
+                        "required": true
+                    }
+                },
+                "description": "How was the assembly done (e.g. with a text based assembler like phrap or a flowgram assembler); estimated error rate associated with the finished sequences (e.g. error rate of 1 in 1000 bp); and the method of calculation"
+            },
+            "submitted_to_insdc": {
+                "required": true,
+                "type": "boolean",
+                "description": "Depending on the study (large-scale e.g. done with next generation sequencing technology, or small-scale) sequences have to be submitted to SRA (Sequence Read Archive), DRA (DDBJ Read Archive) or via the classical Webin/Sequin systems to Genbank, ENA and DDBJ. Although this field is mandatory, it is meant as a self-test field, therefore it is not necessary to include this field in contextual data submitted to databases",
+                "title": "submitted to insdc"
+            },
+            "seq_meth": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Sequencing method used; e.g. Sanger, pyrosequencing, ABI-solid",
+                "title": "sequencing method"
+            },
+            "propagation": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "This field is specific to different taxa. For phages: lytic/lysogenic, for plasmids: incompatibility group (Note: there is the strong opinion to name phage propagation obligately lytic or temperate, therefore we also give this choice",
+                "title": "propagation"
+            },
+            "collection_date": {
+                "format": "datetime",
+                "required": true,
+                "description": "The time of sampling, either as an instance (single point in time) or interval. In case no exact time is available, the date/time can be right truncated i.e. all of these are valid times: 2008-01-23T19:23:10+00:00; 2008-01-23T19:23:10; 2008-01-23; 2008-01; 2008; Except: 2008-01; 2008 all are ISO8601 compliant",
+                "title": "collection date"
+            },
+            "env_package": {
+                "title": "environmental package",
+                "enum": [
+                    "",
+                    "air",
+                    "built environment",
+                    "host-associated",
+                    "human-associated",
+                    "human-skin",
+                    "human-oral",
+                    "human-gut",
+                    "human-vaginal",
+                    "microbial mat/biofilm",
+                    "misc environment",
+                    "plant-associated",
+                    "sediment",
+                    "soil",
+                    "wastewater/sludge",
+                    "water"
+                ],
+                "description": "MIGS/MIMS/MIMARKS extension for reporting of measurements and observations obtained from one or more of the environments where the sample was obtained. All environmental packages listed here are further defined in separate subtables. By giving the name of the environmental package, a selection of fields can be made from the subtables and can be reported",
+                "required": true
+            },
+            "env_biome": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Biomes are defined based on factors such as plant structures, leaf types, plant spacing, and other factors like climate. Biome should be treated as the descriptor of the broad ecological context of a sample. Examples include: desert, taiga, deciduous woodland, or coral reef. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (biome)"
+            },
+            "investigation_type": {
+                "title": "investigation type",
+                "enum": [
+                    "",
+                    "eukaryote",
+                    "bacteria_archaea",
+                    "plasmid",
+                    "virus",
+                    "organelle",
+                    "metagenome",
+                    "mimarks-survey",
+                    "mimarks-specimen"
+                ],
+                "description": "Nucleic Acid Sequence Report is the root element of all MIGS/MIMS compliant reports as standardized by Genomic Standards Consortium. This field is either eukaryote,bacteria,virus,plasmid,organelle, metagenome,mimarks-survey, or mimarks-specimen",
+                "required": true
+            },
+            "isol_growth_condt": {
+                "title": "isolation and growth condition",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "reference_type": {
+                        "title": "reference_type",
+                        "enum": [
+                            "PMID",
+                            "DOI",
+                            "URL"
+                        ],
+                        "required": true
+                    },
+                    "reference": {
+                        "required": true,
+                        "type": "string",
+                        "title": "reference"
+                    }
+                },
+                "description": "Publication reference in the form of pubmed ID (pmid), digital object identifier (doi) or url for isolation and growth condition specifications of the organism/material"
+            },
+            "geo_loc_name": {
+                "pattern": "\\w+:\\w+:.+",
+                "required": true,
+                "type": "string",
+                "description": "The geographical origin of the sample as defined by the country or sea name followed by specific region name. Country or sea names should be chosen from the INSDC country list (http://insdc.org/country.html), or the GAZ ontology (v 1.512) (http://purl.bioontology.org/ontology/GAZ)",
+                "title": "geographic location (country and/or sea,region)"
+            },
+            "env_material": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "The environmental material level refers to the material that was displaced by the sample, or material in which a sample was embedded, prior to the sampling event. Environmental material terms are generally mass nouns. Examples include: air, soil, or water. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (material)"
+            },
+            "lat_lon": {
+                "title": "geographic location (latitude and longitude)",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "latitude": {
+                        "required": true,
+                        "type": "number",
+                        "title": "latitude"
+                    },
+                    "longitude": {
+                        "required": true,
+                        "type": "number",
+                        "title": "longitude"
+                    }
+                },
+                "description": "The geographical origin of the sample as defined by latitude and longitude. The values should be reported in decimal degrees and in WGS84 system"
+            }
         }
     },
     "human-associated": {
+        "type": "object",
+        "properties": {}
     },
     "ba": {
-        "env_feature": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Environmental feature level includes geographic environmental features. Compared to biome, feature is a descriptor of the more local environment. Examples include: harbor, cliff, or lake. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (feature)"
-        },
-        "finishing_strategy": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Was the genome project intended to produce a complete or draft genome, Coverage, the fold coverage of the sequencing expressed as 2x, 3x, 18x  etc, and how many contigs were produced for the genome",
-            "title": "finishing strategy"
-        },
-        "assembly": {
-            "title": "assembly",
-            "required": true,
-            "type": "object",
-            "properties": {
-                "text_value_2": {
-                    "type": "string"
-                },
-                "text_value_0": {
-                    "type": "string"
-                },
-                "text_value_1": {
-                    "type": "string"
-                }
+        "type": "object",
+        "properties": {
+            "env_feature": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Environmental feature level includes geographic environmental features. Compared to biome, feature is a descriptor of the more local environment. Examples include: harbor, cliff, or lake. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (feature)"
             },
-            "description": "How was the assembly done (e.g. with a text based assembler like phrap or a flowgram assembler); estimated error rate associated with the finished sequences (e.g. error rate of 1 in 1000 bp); and the method of calculation"
-        },
-        "submitted_to_insdc": {
-            "required": true,
-            "type": "boolean",
-            "description": "Depending on the study (large-scale e.g. done with next generation sequencing technology, or small-scale) sequences have to be submitted to SRA (Sequence Read Archive), DRA (DDBJ Read Archive) or via the classical Webin/Sequin systems to Genbank, ENA and DDBJ. Although this field is mandatory, it is meant as a self-test field, therefore it is not necessary to include this field in contextual data submitted to databases",
-            "title": "submitted to insdc"
-        },
-        "seq_meth": {
-            "required": true,
-            "type": "string",
-            "description": "Sequencing method used; e.g. Sanger, pyrosequencing, ABI-solid",
-            "title": "sequencing method"
-        },
-        "collection_date": {
-            "required": true,
-            "description": "The time of sampling, either as an instance (single point in time) or interval. In case no exact time is available, the date/time can be right truncated i.e. all of these are valid times: 2008-01-23T19:23:10+00:00; 2008-01-23T19:23:10; 2008-01-23; 2008-01; 2008; Except: 2008-01; 2008 all are ISO8601 compliant",
-            "title": "collection date",
-            "format": "datetime"
-        },
-        "project_name": {
-            "required": true,
-            "type": "string",
-            "description": "Name of the project within which the sequencing was organized",
-            "title": "project name"
-        },
-        "env_package": {
-            "title": "environmental package",
-            "enum": [
-                "",
-                "air",
-                "built environment",
-                "host-associated",
-                "human-associated",
-                "human-skin",
-                "human-oral",
-                "human-gut",
-                "human-vaginal",
-                "microbial mat/biofilm",
-                "misc environment",
-                "plant-associated",
-                "sediment",
-                "soil",
-                "wastewater/sludge",
-                "water"
-            ],
-            "description": "MIGS/MIMS/MIMARKS extension for reporting of measurements and observations obtained from one or more of the environments where the sample was obtained. All environmental packages listed here are further defined in separate subtables. By giving the name of the environmental package, a selection of fields can be made from the subtables and can be reported",
-            "required": true
-        },
-        "ref_biomaterial": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "primary publication if isolated before genome publication; otherwise, primary genome report",
-            "title": "reference for biomaterial"
-        },
-        "env_biome": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Biomes are defined based on factors such as plant structures, leaf types, plant spacing, and other factors like climate. Biome should be treated as the descriptor of the broad ecological context of a sample. Examples include: desert, taiga, deciduous woodland, or coral reef. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (biome)"
-        },
-        "investigation_type": {
-            "title": "investigation type",
-            "enum": [
-                "",
-                "eukaryote",
-                "bacteria_archaea",
-                "plasmid",
-                "virus",
-                "organelle",
-                "metagenome",
-                "mimarks-survey",
-                "mimarks-specimen"
-            ],
-            "description": "Nucleic Acid Sequence Report is the root element of all MIGS/MIMS compliant reports as standardized by Genomic Standards Consortium. This field is either eukaryote,bacteria,virus,plasmid,organelle, metagenome,mimarks-survey, or mimarks-specimen",
-            "required": true
-        },
-        "isol_growth_condt": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Publication reference in the form of pubmed ID (pmid), digital object identifier (doi) or url for isolation and growth condition specifications of the organism/material",
-            "title": "isolation and growth condition"
-        },
-        "num_replicons": {
-            "required": true,
-            "type": "integer",
-            "description": "Reports the number of replicons in a nuclear genome of eukaryotes, in the genome of a bacterium or archaea or the number of segments in a segmented virus. Always applied to the haploid chromosome count of a eukaryote",
-            "title": "number of replicons"
-        },
-        "geo_loc_name": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "The geographical origin of the sample as defined by the country or sea name followed by specific region name. Country or sea names should be chosen from the INSDC country list (http://insdc.org/country.html), or the GAZ ontology (v 1.512) (http://purl.bioontology.org/ontology/GAZ)",
-            "title": "geographic location (country and/or sea,region)"
-        },
-        "env_material": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "The environmental material level refers to the material that was displaced by the sample, or material in which a sample was embedded, prior to the sampling event. Environmental material terms are generally mass nouns. Examples include: air, soil, or water. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (material)"
-        },
-        "lat_lon": {
-            "title": "geographic location (latitude and longitude)",
-            "required": true,
-            "type": "object",
-            "properties": {
-                "float_value_0": {
-                    "type": "number"
+            "finishing_strategy": {
+                "title": "finishing strategy",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "number_of_contigs": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "exclusiveMinimum": false,
+                        "title": "number_of_contigs",
+                        "required": true
+                    },
+                    "finishing_status": {
+                        "title": "finishing_status",
+                        "enum": [
+                            "complete",
+                            "draft"
+                        ],
+                        "required": true
+                    },
+                    "coverage": {
+                        "exclusiveMaximum": false,
+                        "title": "coverage",
+                        "exclusiveMinimum": false,
+                        "required": true,
+                        "maximum": 100,
+                        "minimum": 0,
+                        "type": "integer"
+                    }
                 },
-                "float_value_1": {
-                    "type": "number"
-                }
+                "description": "Was the genome project intended to produce a complete or draft genome, Coverage, the fold coverage of the sequencing expressed as 2x, 3x, 18x  etc, and how many contigs were produced for the genome"
             },
-            "description": "The geographical origin of the sample as defined by latitude and longitude. The values should be reported in decimal degrees and in WGS84 system"
+            "assembly": {
+                "title": "assembly",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "assembly_method": {
+                        "title": "assembly_method",
+                        "enum": [
+                            "Celera",
+                            "Phrap",
+                            "TIGR ASSEMBLER",
+                            "Lasergene SeqMan",
+                            "Phred/Phrap/Consed",
+                            "Arachne ASSEMBLER"
+                        ],
+                        "required": true
+                    },
+                    "calulcation_method": {
+                        "required": true,
+                        "type": "string",
+                        "title": "calulcation_method"
+                    },
+                    "estimated_error_rate": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "exclusiveMinimum": false,
+                        "title": "estimated_error_rate",
+                        "required": true
+                    }
+                },
+                "description": "How was the assembly done (e.g. with a text based assembler like phrap or a flowgram assembler); estimated error rate associated with the finished sequences (e.g. error rate of 1 in 1000 bp); and the method of calculation"
+            },
+            "submitted_to_insdc": {
+                "required": true,
+                "type": "boolean",
+                "description": "Depending on the study (large-scale e.g. done with next generation sequencing technology, or small-scale) sequences have to be submitted to SRA (Sequence Read Archive), DRA (DDBJ Read Archive) or via the classical Webin/Sequin systems to Genbank, ENA and DDBJ. Although this field is mandatory, it is meant as a self-test field, therefore it is not necessary to include this field in contextual data submitted to databases",
+                "title": "submitted to insdc"
+            },
+            "seq_meth": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Sequencing method used; e.g. Sanger, pyrosequencing, ABI-solid",
+                "title": "sequencing method"
+            },
+            "collection_date": {
+                "format": "datetime",
+                "required": true,
+                "description": "The time of sampling, either as an instance (single point in time) or interval. In case no exact time is available, the date/time can be right truncated i.e. all of these are valid times: 2008-01-23T19:23:10+00:00; 2008-01-23T19:23:10; 2008-01-23; 2008-01; 2008; Except: 2008-01; 2008 all are ISO8601 compliant",
+                "title": "collection date"
+            },
+            "project_name": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Name of the project within which the sequencing was organized",
+                "title": "project name"
+            },
+            "env_package": {
+                "title": "environmental package",
+                "enum": [
+                    "",
+                    "air",
+                    "built environment",
+                    "host-associated",
+                    "human-associated",
+                    "human-skin",
+                    "human-oral",
+                    "human-gut",
+                    "human-vaginal",
+                    "microbial mat/biofilm",
+                    "misc environment",
+                    "plant-associated",
+                    "sediment",
+                    "soil",
+                    "wastewater/sludge",
+                    "water"
+                ],
+                "description": "MIGS/MIMS/MIMARKS extension for reporting of measurements and observations obtained from one or more of the environments where the sample was obtained. All environmental packages listed here are further defined in separate subtables. By giving the name of the environmental package, a selection of fields can be made from the subtables and can be reported",
+                "required": true
+            },
+            "ref_biomaterial": {
+                "title": "reference for biomaterial",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "reference_type": {
+                        "title": "reference_type",
+                        "enum": [
+                            "PMID",
+                            "DOI",
+                            "URL"
+                        ],
+                        "required": true
+                    },
+                    "reference": {
+                        "required": true,
+                        "type": "string",
+                        "title": "reference"
+                    }
+                },
+                "description": "primary publication if isolated before genome publication; otherwise, primary genome report"
+            },
+            "env_biome": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Biomes are defined based on factors such as plant structures, leaf types, plant spacing, and other factors like climate. Biome should be treated as the descriptor of the broad ecological context of a sample. Examples include: desert, taiga, deciduous woodland, or coral reef. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (biome)"
+            },
+            "investigation_type": {
+                "title": "investigation type",
+                "enum": [
+                    "",
+                    "eukaryote",
+                    "bacteria_archaea",
+                    "plasmid",
+                    "virus",
+                    "organelle",
+                    "metagenome",
+                    "mimarks-survey",
+                    "mimarks-specimen"
+                ],
+                "description": "Nucleic Acid Sequence Report is the root element of all MIGS/MIMS compliant reports as standardized by Genomic Standards Consortium. This field is either eukaryote,bacteria,virus,plasmid,organelle, metagenome,mimarks-survey, or mimarks-specimen",
+                "required": true
+            },
+            "isol_growth_condt": {
+                "title": "isolation and growth condition",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "reference_type": {
+                        "title": "reference_type",
+                        "enum": [
+                            "PMID",
+                            "DOI",
+                            "URL"
+                        ],
+                        "required": true
+                    },
+                    "reference": {
+                        "required": true,
+                        "type": "string",
+                        "title": "reference"
+                    }
+                },
+                "description": "Publication reference in the form of pubmed ID (pmid), digital object identifier (doi) or url for isolation and growth condition specifications of the organism/material"
+            },
+            "num_replicons": {
+                "required": true,
+                "type": "integer",
+                "description": "Reports the number of replicons in a nuclear genome of eukaryotes, in the genome of a bacterium or archaea or the number of segments in a segmented virus. Always applied to the haploid chromosome count of a eukaryote",
+                "title": "number of replicons"
+            },
+            "geo_loc_name": {
+                "pattern": "\\w+:\\w+:.+",
+                "required": true,
+                "type": "string",
+                "description": "The geographical origin of the sample as defined by the country or sea name followed by specific region name. Country or sea names should be chosen from the INSDC country list (http://insdc.org/country.html), or the GAZ ontology (v 1.512) (http://purl.bioontology.org/ontology/GAZ)",
+                "title": "geographic location (country and/or sea,region)"
+            },
+            "env_material": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "The environmental material level refers to the material that was displaced by the sample, or material in which a sample was embedded, prior to the sampling event. Environmental material terms are generally mass nouns. Examples include: air, soil, or water. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (material)"
+            },
+            "lat_lon": {
+                "title": "geographic location (latitude and longitude)",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "latitude": {
+                        "required": true,
+                        "type": "number",
+                        "title": "latitude"
+                    },
+                    "longitude": {
+                        "required": true,
+                        "type": "number",
+                        "title": "longitude"
+                    }
+                },
+                "description": "The geographical origin of the sample as defined by latitude and longitude. The values should be reported in decimal degrees and in WGS84 system"
+            }
         }
     },
     "miens_s": {
-        "env_feature": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Environmental feature level includes geographic environmental features. Compared to biome, feature is a descriptor of the more local environment. Examples include: harbor, cliff, or lake. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (feature)"
-        },
-        "project_name": {
-            "required": true,
-            "type": "string",
-            "description": "Name of the project within which the sequencing was organized",
-            "title": "project name"
-        },
-        "submitted_to_insdc": {
-            "required": true,
-            "type": "boolean",
-            "description": "Depending on the study (large-scale e.g. done with next generation sequencing technology, or small-scale) sequences have to be submitted to SRA (Sequence Read Archive), DRA (DDBJ Read Archive) or via the classical Webin/Sequin systems to Genbank, ENA and DDBJ. Although this field is mandatory, it is meant as a self-test field, therefore it is not necessary to include this field in contextual data submitted to databases",
-            "title": "submitted to insdc"
-        },
-        "seq_meth": {
-            "required": true,
-            "type": "string",
-            "description": "Sequencing method used; e.g. Sanger, pyrosequencing, ABI-solid",
-            "title": "sequencing method"
-        },
-        "collection_date": {
-            "required": true,
-            "description": "The time of sampling, either as an instance (single point in time) or interval. In case no exact time is available, the date/time can be right truncated i.e. all of these are valid times: 2008-01-23T19:23:10+00:00; 2008-01-23T19:23:10; 2008-01-23; 2008-01; 2008; Except: 2008-01; 2008 all are ISO8601 compliant",
-            "title": "collection date",
-            "format": "datetime"
-        },
-        "env_package": {
-            "title": "environmental package",
-            "enum": [
-                "",
-                "air",
-                "built environment",
-                "host-associated",
-                "human-associated",
-                "human-skin",
-                "human-oral",
-                "human-gut",
-                "human-vaginal",
-                "microbial mat/biofilm",
-                "misc environment",
-                "plant-associated",
-                "sediment",
-                "soil",
-                "wastewater/sludge",
-                "water"
-            ],
-            "description": "MIGS/MIMS/MIMARKS extension for reporting of measurements and observations obtained from one or more of the environments where the sample was obtained. All environmental packages listed here are further defined in separate subtables. By giving the name of the environmental package, a selection of fields can be made from the subtables and can be reported",
-            "required": true
-        },
-        "env_biome": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Biomes are defined based on factors such as plant structures, leaf types, plant spacing, and other factors like climate. Biome should be treated as the descriptor of the broad ecological context of a sample. Examples include: desert, taiga, deciduous woodland, or coral reef. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (biome)"
-        },
-        "investigation_type": {
-            "title": "investigation type",
-            "enum": [
-                "",
-                "eukaryote",
-                "bacteria_archaea",
-                "plasmid",
-                "virus",
-                "organelle",
-                "metagenome",
-                "mimarks-survey",
-                "mimarks-specimen"
-            ],
-            "description": "Nucleic Acid Sequence Report is the root element of all MIGS/MIMS compliant reports as standardized by Genomic Standards Consortium. This field is either eukaryote,bacteria,virus,plasmid,organelle, metagenome,mimarks-survey, or mimarks-specimen",
-            "required": true
-        },
-        "lat_lon": {
-            "title": "geographic location (latitude and longitude)",
-            "required": true,
-            "type": "object",
-            "properties": {
-                "float_value_0": {
-                    "type": "number"
-                },
-                "float_value_1": {
-                    "type": "number"
-                }
+        "type": "object",
+        "properties": {
+            "env_feature": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Environmental feature level includes geographic environmental features. Compared to biome, feature is a descriptor of the more local environment. Examples include: harbor, cliff, or lake. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (feature)"
             },
-            "description": "The geographical origin of the sample as defined by latitude and longitude. The values should be reported in decimal degrees and in WGS84 system"
-        },
-        "geo_loc_name": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "The geographical origin of the sample as defined by the country or sea name followed by specific region name. Country or sea names should be chosen from the INSDC country list (http://insdc.org/country.html), or the GAZ ontology (v 1.512) (http://purl.bioontology.org/ontology/GAZ)",
-            "title": "geographic location (country and/or sea,region)"
-        },
-        "env_material": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "The environmental material level refers to the material that was displaced by the sample, or material in which a sample was embedded, prior to the sampling event. Environmental material terms are generally mass nouns. Examples include: air, soil, or water. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (material)"
-        },
-        "target_gene": {
-            "required": true,
-            "type": "string",
-            "description": "Targeted gene or locus name for marker gene studies",
-            "title": "target gene"
+            "project_name": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Name of the project within which the sequencing was organized",
+                "title": "project name"
+            },
+            "submitted_to_insdc": {
+                "required": true,
+                "type": "boolean",
+                "description": "Depending on the study (large-scale e.g. done with next generation sequencing technology, or small-scale) sequences have to be submitted to SRA (Sequence Read Archive), DRA (DDBJ Read Archive) or via the classical Webin/Sequin systems to Genbank, ENA and DDBJ. Although this field is mandatory, it is meant as a self-test field, therefore it is not necessary to include this field in contextual data submitted to databases",
+                "title": "submitted to insdc"
+            },
+            "seq_meth": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Sequencing method used; e.g. Sanger, pyrosequencing, ABI-solid",
+                "title": "sequencing method"
+            },
+            "collection_date": {
+                "format": "datetime",
+                "required": true,
+                "description": "The time of sampling, either as an instance (single point in time) or interval. In case no exact time is available, the date/time can be right truncated i.e. all of these are valid times: 2008-01-23T19:23:10+00:00; 2008-01-23T19:23:10; 2008-01-23; 2008-01; 2008; Except: 2008-01; 2008 all are ISO8601 compliant",
+                "title": "collection date"
+            },
+            "env_package": {
+                "title": "environmental package",
+                "enum": [
+                    "",
+                    "air",
+                    "built environment",
+                    "host-associated",
+                    "human-associated",
+                    "human-skin",
+                    "human-oral",
+                    "human-gut",
+                    "human-vaginal",
+                    "microbial mat/biofilm",
+                    "misc environment",
+                    "plant-associated",
+                    "sediment",
+                    "soil",
+                    "wastewater/sludge",
+                    "water"
+                ],
+                "description": "MIGS/MIMS/MIMARKS extension for reporting of measurements and observations obtained from one or more of the environments where the sample was obtained. All environmental packages listed here are further defined in separate subtables. By giving the name of the environmental package, a selection of fields can be made from the subtables and can be reported",
+                "required": true
+            },
+            "env_biome": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Biomes are defined based on factors such as plant structures, leaf types, plant spacing, and other factors like climate. Biome should be treated as the descriptor of the broad ecological context of a sample. Examples include: desert, taiga, deciduous woodland, or coral reef. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (biome)"
+            },
+            "investigation_type": {
+                "title": "investigation type",
+                "enum": [
+                    "",
+                    "eukaryote",
+                    "bacteria_archaea",
+                    "plasmid",
+                    "virus",
+                    "organelle",
+                    "metagenome",
+                    "mimarks-survey",
+                    "mimarks-specimen"
+                ],
+                "description": "Nucleic Acid Sequence Report is the root element of all MIGS/MIMS compliant reports as standardized by Genomic Standards Consortium. This field is either eukaryote,bacteria,virus,plasmid,organelle, metagenome,mimarks-survey, or mimarks-specimen",
+                "required": true
+            },
+            "lat_lon": {
+                "title": "geographic location (latitude and longitude)",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "latitude": {
+                        "required": true,
+                        "type": "number",
+                        "title": "latitude"
+                    },
+                    "longitude": {
+                        "required": true,
+                        "type": "number",
+                        "title": "longitude"
+                    }
+                },
+                "description": "The geographical origin of the sample as defined by latitude and longitude. The values should be reported in decimal degrees and in WGS84 system"
+            },
+            "geo_loc_name": {
+                "pattern": "\\w+:\\w+:.+",
+                "required": true,
+                "type": "string",
+                "description": "The geographical origin of the sample as defined by the country or sea name followed by specific region name. Country or sea names should be chosen from the INSDC country list (http://insdc.org/country.html), or the GAZ ontology (v 1.512) (http://purl.bioontology.org/ontology/GAZ)",
+                "title": "geographic location (country and/or sea,region)"
+            },
+            "env_material": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "The environmental material level refers to the material that was displaced by the sample, or material in which a sample was embedded, prior to the sampling event. Environmental material terms are generally mass nouns. Examples include: air, soil, or water. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (material)"
+            },
+            "target_gene": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Targeted gene or locus name for marker gene studies",
+                "title": "target gene"
+            }
         }
     },
     "water": {
-        "depth": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Please refer to the definitions of depth in the environmental packages",
-            "title": "geographic location (depth)"
+        "type": "object",
+        "properties": {
+            "depth": {
+                "title": "geographic location (depth)",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMinimum": false,
+                        "title": "value",
+                        "required": true
+                    },
+                    "unit": {
+                        "title": "unit",
+                        "enum": [
+                            "cm",
+                            "m"
+                        ],
+                        "required": true
+                    }
+                },
+                "description": "Please refer to the definitions of depth in the environmental packages"
+            }
         }
     },
     "human-gut": {
+        "type": "object",
+        "properties": {}
     },
     "human-skin": {
+        "type": "object",
+        "properties": {}
     },
     "miens_c": {
-        "env_feature": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Environmental feature level includes geographic environmental features. Compared to biome, feature is a descriptor of the more local environment. Examples include: harbor, cliff, or lake. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (feature)"
-        },
-        "project_name": {
-            "required": true,
-            "type": "string",
-            "description": "Name of the project within which the sequencing was organized",
-            "title": "project name"
-        },
-        "submitted_to_insdc": {
-            "required": true,
-            "type": "boolean",
-            "description": "Depending on the study (large-scale e.g. done with next generation sequencing technology, or small-scale) sequences have to be submitted to SRA (Sequence Read Archive), DRA (DDBJ Read Archive) or via the classical Webin/Sequin systems to Genbank, ENA and DDBJ. Although this field is mandatory, it is meant as a self-test field, therefore it is not necessary to include this field in contextual data submitted to databases",
-            "title": "submitted to insdc"
-        },
-        "seq_meth": {
-            "required": true,
-            "type": "string",
-            "description": "Sequencing method used; e.g. Sanger, pyrosequencing, ABI-solid",
-            "title": "sequencing method"
-        },
-        "collection_date": {
-            "required": true,
-            "description": "The time of sampling, either as an instance (single point in time) or interval. In case no exact time is available, the date/time can be right truncated i.e. all of these are valid times: 2008-01-23T19:23:10+00:00; 2008-01-23T19:23:10; 2008-01-23; 2008-01; 2008; Except: 2008-01; 2008 all are ISO8601 compliant",
-            "title": "collection date",
-            "format": "datetime"
-        },
-        "env_package": {
-            "title": "environmental package",
-            "enum": [
-                "",
-                "air",
-                "built environment",
-                "host-associated",
-                "human-associated",
-                "human-skin",
-                "human-oral",
-                "human-gut",
-                "human-vaginal",
-                "microbial mat/biofilm",
-                "misc environment",
-                "plant-associated",
-                "sediment",
-                "soil",
-                "wastewater/sludge",
-                "water"
-            ],
-            "description": "MIGS/MIMS/MIMARKS extension for reporting of measurements and observations obtained from one or more of the environments where the sample was obtained. All environmental packages listed here are further defined in separate subtables. By giving the name of the environmental package, a selection of fields can be made from the subtables and can be reported",
-            "required": true
-        },
-        "env_biome": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Biomes are defined based on factors such as plant structures, leaf types, plant spacing, and other factors like climate. Biome should be treated as the descriptor of the broad ecological context of a sample. Examples include: desert, taiga, deciduous woodland, or coral reef. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (biome)"
-        },
-        "investigation_type": {
-            "title": "investigation type",
-            "enum": [
-                "",
-                "eukaryote",
-                "bacteria_archaea",
-                "plasmid",
-                "virus",
-                "organelle",
-                "metagenome",
-                "mimarks-survey",
-                "mimarks-specimen"
-            ],
-            "description": "Nucleic Acid Sequence Report is the root element of all MIGS/MIMS compliant reports as standardized by Genomic Standards Consortium. This field is either eukaryote,bacteria,virus,plasmid,organelle, metagenome,mimarks-survey, or mimarks-specimen",
-            "required": true
-        },
-        "isol_growth_condt": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Publication reference in the form of pubmed ID (pmid), digital object identifier (doi) or url for isolation and growth condition specifications of the organism/material",
-            "title": "isolation and growth condition"
-        },
-        "lat_lon": {
-            "title": "geographic location (latitude and longitude)",
-            "required": true,
-            "type": "object",
-            "properties": {
-                "float_value_0": {
-                    "type": "number"
-                },
-                "float_value_1": {
-                    "type": "number"
-                }
+        "type": "object",
+        "properties": {
+            "env_feature": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Environmental feature level includes geographic environmental features. Compared to biome, feature is a descriptor of the more local environment. Examples include: harbor, cliff, or lake. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (feature)"
             },
-            "description": "The geographical origin of the sample as defined by latitude and longitude. The values should be reported in decimal degrees and in WGS84 system"
-        },
-        "geo_loc_name": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "The geographical origin of the sample as defined by the country or sea name followed by specific region name. Country or sea names should be chosen from the INSDC country list (http://insdc.org/country.html), or the GAZ ontology (v 1.512) (http://purl.bioontology.org/ontology/GAZ)",
-            "title": "geographic location (country and/or sea,region)"
-        },
-        "env_material": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "The environmental material level refers to the material that was displaced by the sample, or material in which a sample was embedded, prior to the sampling event. Environmental material terms are generally mass nouns. Examples include: air, soil, or water. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (material)"
-        },
-        "target_gene": {
-            "required": true,
-            "type": "string",
-            "description": "Targeted gene or locus name for marker gene studies",
-            "title": "target gene"
+            "project_name": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Name of the project within which the sequencing was organized",
+                "title": "project name"
+            },
+            "submitted_to_insdc": {
+                "required": true,
+                "type": "boolean",
+                "description": "Depending on the study (large-scale e.g. done with next generation sequencing technology, or small-scale) sequences have to be submitted to SRA (Sequence Read Archive), DRA (DDBJ Read Archive) or via the classical Webin/Sequin systems to Genbank, ENA and DDBJ. Although this field is mandatory, it is meant as a self-test field, therefore it is not necessary to include this field in contextual data submitted to databases",
+                "title": "submitted to insdc"
+            },
+            "seq_meth": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Sequencing method used; e.g. Sanger, pyrosequencing, ABI-solid",
+                "title": "sequencing method"
+            },
+            "collection_date": {
+                "format": "datetime",
+                "required": true,
+                "description": "The time of sampling, either as an instance (single point in time) or interval. In case no exact time is available, the date/time can be right truncated i.e. all of these are valid times: 2008-01-23T19:23:10+00:00; 2008-01-23T19:23:10; 2008-01-23; 2008-01; 2008; Except: 2008-01; 2008 all are ISO8601 compliant",
+                "title": "collection date"
+            },
+            "env_package": {
+                "title": "environmental package",
+                "enum": [
+                    "",
+                    "air",
+                    "built environment",
+                    "host-associated",
+                    "human-associated",
+                    "human-skin",
+                    "human-oral",
+                    "human-gut",
+                    "human-vaginal",
+                    "microbial mat/biofilm",
+                    "misc environment",
+                    "plant-associated",
+                    "sediment",
+                    "soil",
+                    "wastewater/sludge",
+                    "water"
+                ],
+                "description": "MIGS/MIMS/MIMARKS extension for reporting of measurements and observations obtained from one or more of the environments where the sample was obtained. All environmental packages listed here are further defined in separate subtables. By giving the name of the environmental package, a selection of fields can be made from the subtables and can be reported",
+                "required": true
+            },
+            "env_biome": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Biomes are defined based on factors such as plant structures, leaf types, plant spacing, and other factors like climate. Biome should be treated as the descriptor of the broad ecological context of a sample. Examples include: desert, taiga, deciduous woodland, or coral reef. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (biome)"
+            },
+            "investigation_type": {
+                "title": "investigation type",
+                "enum": [
+                    "",
+                    "eukaryote",
+                    "bacteria_archaea",
+                    "plasmid",
+                    "virus",
+                    "organelle",
+                    "metagenome",
+                    "mimarks-survey",
+                    "mimarks-specimen"
+                ],
+                "description": "Nucleic Acid Sequence Report is the root element of all MIGS/MIMS compliant reports as standardized by Genomic Standards Consortium. This field is either eukaryote,bacteria,virus,plasmid,organelle, metagenome,mimarks-survey, or mimarks-specimen",
+                "required": true
+            },
+            "isol_growth_condt": {
+                "title": "isolation and growth condition",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "reference_type": {
+                        "title": "reference_type",
+                        "enum": [
+                            "PMID",
+                            "DOI",
+                            "URL"
+                        ],
+                        "required": true
+                    },
+                    "reference": {
+                        "required": true,
+                        "type": "string",
+                        "title": "reference"
+                    }
+                },
+                "description": "Publication reference in the form of pubmed ID (pmid), digital object identifier (doi) or url for isolation and growth condition specifications of the organism/material"
+            },
+            "lat_lon": {
+                "title": "geographic location (latitude and longitude)",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "latitude": {
+                        "required": true,
+                        "type": "number",
+                        "title": "latitude"
+                    },
+                    "longitude": {
+                        "required": true,
+                        "type": "number",
+                        "title": "longitude"
+                    }
+                },
+                "description": "The geographical origin of the sample as defined by latitude and longitude. The values should be reported in decimal degrees and in WGS84 system"
+            },
+            "geo_loc_name": {
+                "pattern": "\\w+:\\w+:.+",
+                "required": true,
+                "type": "string",
+                "description": "The geographical origin of the sample as defined by the country or sea name followed by specific region name. Country or sea names should be chosen from the INSDC country list (http://insdc.org/country.html), or the GAZ ontology (v 1.512) (http://purl.bioontology.org/ontology/GAZ)",
+                "title": "geographic location (country and/or sea,region)"
+            },
+            "env_material": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "The environmental material level refers to the material that was displaced by the sample, or material in which a sample was embedded, prior to the sampling event. Environmental material terms are generally mass nouns. Examples include: air, soil, or water. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (material)"
+            },
+            "target_gene": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Targeted gene or locus name for marker gene studies",
+                "title": "target gene"
+            }
         }
     },
     "org": {
-        "env_feature": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Environmental feature level includes geographic environmental features. Compared to biome, feature is a descriptor of the more local environment. Examples include: harbor, cliff, or lake. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (feature)"
-        },
-        "project_name": {
-            "required": true,
-            "type": "string",
-            "description": "Name of the project within which the sequencing was organized",
-            "title": "project name"
-        },
-        "assembly": {
-            "title": "assembly",
-            "required": true,
-            "type": "object",
-            "properties": {
-                "text_value_2": {
-                    "type": "string"
-                },
-                "text_value_0": {
-                    "type": "string"
-                },
-                "text_value_1": {
-                    "type": "string"
-                }
+        "type": "object",
+        "properties": {
+            "env_feature": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Environmental feature level includes geographic environmental features. Compared to biome, feature is a descriptor of the more local environment. Examples include: harbor, cliff, or lake. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (feature)"
             },
-            "description": "How was the assembly done (e.g. with a text based assembler like phrap or a flowgram assembler); estimated error rate associated with the finished sequences (e.g. error rate of 1 in 1000 bp); and the method of calculation"
-        },
-        "submitted_to_insdc": {
-            "required": true,
-            "type": "boolean",
-            "description": "Depending on the study (large-scale e.g. done with next generation sequencing technology, or small-scale) sequences have to be submitted to SRA (Sequence Read Archive), DRA (DDBJ Read Archive) or via the classical Webin/Sequin systems to Genbank, ENA and DDBJ. Although this field is mandatory, it is meant as a self-test field, therefore it is not necessary to include this field in contextual data submitted to databases",
-            "title": "submitted to insdc"
-        },
-        "seq_meth": {
-            "required": true,
-            "type": "string",
-            "description": "Sequencing method used; e.g. Sanger, pyrosequencing, ABI-solid",
-            "title": "sequencing method"
-        },
-        "collection_date": {
-            "required": true,
-            "description": "The time of sampling, either as an instance (single point in time) or interval. In case no exact time is available, the date/time can be right truncated i.e. all of these are valid times: 2008-01-23T19:23:10+00:00; 2008-01-23T19:23:10; 2008-01-23; 2008-01; 2008; Except: 2008-01; 2008 all are ISO8601 compliant",
-            "title": "collection date",
-            "format": "datetime"
-        },
-        "env_package": {
-            "title": "environmental package",
-            "enum": [
-                "",
-                "air",
-                "built environment",
-                "host-associated",
-                "human-associated",
-                "human-skin",
-                "human-oral",
-                "human-gut",
-                "human-vaginal",
-                "microbial mat/biofilm",
-                "misc environment",
-                "plant-associated",
-                "sediment",
-                "soil",
-                "wastewater/sludge",
-                "water"
-            ],
-            "description": "MIGS/MIMS/MIMARKS extension for reporting of measurements and observations obtained from one or more of the environments where the sample was obtained. All environmental packages listed here are further defined in separate subtables. By giving the name of the environmental package, a selection of fields can be made from the subtables and can be reported",
-            "required": true
-        },
-        "env_biome": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Biomes are defined based on factors such as plant structures, leaf types, plant spacing, and other factors like climate. Biome should be treated as the descriptor of the broad ecological context of a sample. Examples include: desert, taiga, deciduous woodland, or coral reef. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (biome)"
-        },
-        "investigation_type": {
-            "title": "investigation type",
-            "enum": [
-                "",
-                "eukaryote",
-                "bacteria_archaea",
-                "plasmid",
-                "virus",
-                "organelle",
-                "metagenome",
-                "mimarks-survey",
-                "mimarks-specimen"
-            ],
-            "description": "Nucleic Acid Sequence Report is the root element of all MIGS/MIMS compliant reports as standardized by Genomic Standards Consortium. This field is either eukaryote,bacteria,virus,plasmid,organelle, metagenome,mimarks-survey, or mimarks-specimen",
-            "required": true
-        },
-        "isol_growth_condt": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Publication reference in the form of pubmed ID (pmid), digital object identifier (doi) or url for isolation and growth condition specifications of the organism/material",
-            "title": "isolation and growth condition"
-        },
-        "geo_loc_name": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "The geographical origin of the sample as defined by the country or sea name followed by specific region name. Country or sea names should be chosen from the INSDC country list (http://insdc.org/country.html), or the GAZ ontology (v 1.512) (http://purl.bioontology.org/ontology/GAZ)",
-            "title": "geographic location (country and/or sea,region)"
-        },
-        "env_material": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "The environmental material level refers to the material that was displaced by the sample, or material in which a sample was embedded, prior to the sampling event. Environmental material terms are generally mass nouns. Examples include: air, soil, or water. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (material)"
-        },
-        "lat_lon": {
-            "title": "geographic location (latitude and longitude)",
-            "required": true,
-            "type": "object",
-            "properties": {
-                "float_value_0": {
-                    "type": "number"
-                },
-                "float_value_1": {
-                    "type": "number"
-                }
+            "project_name": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Name of the project within which the sequencing was organized",
+                "title": "project name"
             },
-            "description": "The geographical origin of the sample as defined by latitude and longitude. The values should be reported in decimal degrees and in WGS84 system"
+            "assembly": {
+                "title": "assembly",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "assembly_method": {
+                        "title": "assembly_method",
+                        "enum": [
+                            "Celera",
+                            "Phrap",
+                            "TIGR ASSEMBLER",
+                            "Lasergene SeqMan",
+                            "Phred/Phrap/Consed",
+                            "Arachne ASSEMBLER"
+                        ],
+                        "required": true
+                    },
+                    "calulcation_method": {
+                        "required": true,
+                        "type": "string",
+                        "title": "calulcation_method"
+                    },
+                    "estimated_error_rate": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "exclusiveMinimum": false,
+                        "title": "estimated_error_rate",
+                        "required": true
+                    }
+                },
+                "description": "How was the assembly done (e.g. with a text based assembler like phrap or a flowgram assembler); estimated error rate associated with the finished sequences (e.g. error rate of 1 in 1000 bp); and the method of calculation"
+            },
+            "submitted_to_insdc": {
+                "required": true,
+                "type": "boolean",
+                "description": "Depending on the study (large-scale e.g. done with next generation sequencing technology, or small-scale) sequences have to be submitted to SRA (Sequence Read Archive), DRA (DDBJ Read Archive) or via the classical Webin/Sequin systems to Genbank, ENA and DDBJ. Although this field is mandatory, it is meant as a self-test field, therefore it is not necessary to include this field in contextual data submitted to databases",
+                "title": "submitted to insdc"
+            },
+            "seq_meth": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Sequencing method used; e.g. Sanger, pyrosequencing, ABI-solid",
+                "title": "sequencing method"
+            },
+            "collection_date": {
+                "format": "datetime",
+                "required": true,
+                "description": "The time of sampling, either as an instance (single point in time) or interval. In case no exact time is available, the date/time can be right truncated i.e. all of these are valid times: 2008-01-23T19:23:10+00:00; 2008-01-23T19:23:10; 2008-01-23; 2008-01; 2008; Except: 2008-01; 2008 all are ISO8601 compliant",
+                "title": "collection date"
+            },
+            "env_package": {
+                "title": "environmental package",
+                "enum": [
+                    "",
+                    "air",
+                    "built environment",
+                    "host-associated",
+                    "human-associated",
+                    "human-skin",
+                    "human-oral",
+                    "human-gut",
+                    "human-vaginal",
+                    "microbial mat/biofilm",
+                    "misc environment",
+                    "plant-associated",
+                    "sediment",
+                    "soil",
+                    "wastewater/sludge",
+                    "water"
+                ],
+                "description": "MIGS/MIMS/MIMARKS extension for reporting of measurements and observations obtained from one or more of the environments where the sample was obtained. All environmental packages listed here are further defined in separate subtables. By giving the name of the environmental package, a selection of fields can be made from the subtables and can be reported",
+                "required": true
+            },
+            "env_biome": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Biomes are defined based on factors such as plant structures, leaf types, plant spacing, and other factors like climate. Biome should be treated as the descriptor of the broad ecological context of a sample. Examples include: desert, taiga, deciduous woodland, or coral reef. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (biome)"
+            },
+            "investigation_type": {
+                "title": "investigation type",
+                "enum": [
+                    "",
+                    "eukaryote",
+                    "bacteria_archaea",
+                    "plasmid",
+                    "virus",
+                    "organelle",
+                    "metagenome",
+                    "mimarks-survey",
+                    "mimarks-specimen"
+                ],
+                "description": "Nucleic Acid Sequence Report is the root element of all MIGS/MIMS compliant reports as standardized by Genomic Standards Consortium. This field is either eukaryote,bacteria,virus,plasmid,organelle, metagenome,mimarks-survey, or mimarks-specimen",
+                "required": true
+            },
+            "isol_growth_condt": {
+                "title": "isolation and growth condition",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "reference_type": {
+                        "title": "reference_type",
+                        "enum": [
+                            "PMID",
+                            "DOI",
+                            "URL"
+                        ],
+                        "required": true
+                    },
+                    "reference": {
+                        "required": true,
+                        "type": "string",
+                        "title": "reference"
+                    }
+                },
+                "description": "Publication reference in the form of pubmed ID (pmid), digital object identifier (doi) or url for isolation and growth condition specifications of the organism/material"
+            },
+            "geo_loc_name": {
+                "pattern": "\\w+:\\w+:.+",
+                "required": true,
+                "type": "string",
+                "description": "The geographical origin of the sample as defined by the country or sea name followed by specific region name. Country or sea names should be chosen from the INSDC country list (http://insdc.org/country.html), or the GAZ ontology (v 1.512) (http://purl.bioontology.org/ontology/GAZ)",
+                "title": "geographic location (country and/or sea,region)"
+            },
+            "env_material": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "The environmental material level refers to the material that was displaced by the sample, or material in which a sample was embedded, prior to the sampling event. Environmental material terms are generally mass nouns. Examples include: air, soil, or water. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (material)"
+            },
+            "lat_lon": {
+                "title": "geographic location (latitude and longitude)",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "latitude": {
+                        "required": true,
+                        "type": "number",
+                        "title": "latitude"
+                    },
+                    "longitude": {
+                        "required": true,
+                        "type": "number",
+                        "title": "longitude"
+                    }
+                },
+                "description": "The geographical origin of the sample as defined by latitude and longitude. The values should be reported in decimal degrees and in WGS84 system"
+            }
         }
     },
     "me": {
-        "env_feature": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Environmental feature level includes geographic environmental features. Compared to biome, feature is a descriptor of the more local environment. Examples include: harbor, cliff, or lake. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (feature)"
-        },
-        "project_name": {
-            "required": true,
-            "type": "string",
-            "description": "Name of the project within which the sequencing was organized",
-            "title": "project name"
-        },
-        "assembly": {
-            "title": "assembly",
-            "required": true,
-            "type": "object",
-            "properties": {
-                "text_value_2": {
-                    "type": "string"
-                },
-                "text_value_0": {
-                    "type": "string"
-                },
-                "text_value_1": {
-                    "type": "string"
-                }
+        "type": "object",
+        "properties": {
+            "env_feature": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Environmental feature level includes geographic environmental features. Compared to biome, feature is a descriptor of the more local environment. Examples include: harbor, cliff, or lake. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (feature)"
             },
-            "description": "How was the assembly done (e.g. with a text based assembler like phrap or a flowgram assembler); estimated error rate associated with the finished sequences (e.g. error rate of 1 in 1000 bp); and the method of calculation"
-        },
-        "submitted_to_insdc": {
-            "required": true,
-            "type": "boolean",
-            "description": "Depending on the study (large-scale e.g. done with next generation sequencing technology, or small-scale) sequences have to be submitted to SRA (Sequence Read Archive), DRA (DDBJ Read Archive) or via the classical Webin/Sequin systems to Genbank, ENA and DDBJ. Although this field is mandatory, it is meant as a self-test field, therefore it is not necessary to include this field in contextual data submitted to databases",
-            "title": "submitted to insdc"
-        },
-        "seq_meth": {
-            "required": true,
-            "type": "string",
-            "description": "Sequencing method used; e.g. Sanger, pyrosequencing, ABI-solid",
-            "title": "sequencing method"
-        },
-        "collection_date": {
-            "required": true,
-            "description": "The time of sampling, either as an instance (single point in time) or interval. In case no exact time is available, the date/time can be right truncated i.e. all of these are valid times: 2008-01-23T19:23:10+00:00; 2008-01-23T19:23:10; 2008-01-23; 2008-01; 2008; Except: 2008-01; 2008 all are ISO8601 compliant",
-            "title": "collection date",
-            "format": "datetime"
-        },
-        "env_package": {
-            "title": "environmental package",
-            "enum": [
-                "",
-                "air",
-                "built environment",
-                "host-associated",
-                "human-associated",
-                "human-skin",
-                "human-oral",
-                "human-gut",
-                "human-vaginal",
-                "microbial mat/biofilm",
-                "misc environment",
-                "plant-associated",
-                "sediment",
-                "soil",
-                "wastewater/sludge",
-                "water"
-            ],
-            "description": "MIGS/MIMS/MIMARKS extension for reporting of measurements and observations obtained from one or more of the environments where the sample was obtained. All environmental packages listed here are further defined in separate subtables. By giving the name of the environmental package, a selection of fields can be made from the subtables and can be reported",
-            "required": true
-        },
-        "env_biome": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Biomes are defined based on factors such as plant structures, leaf types, plant spacing, and other factors like climate. Biome should be treated as the descriptor of the broad ecological context of a sample. Examples include: desert, taiga, deciduous woodland, or coral reef. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (biome)"
-        },
-        "investigation_type": {
-            "title": "investigation type",
-            "enum": [
-                "",
-                "eukaryote",
-                "bacteria_archaea",
-                "plasmid",
-                "virus",
-                "organelle",
-                "metagenome",
-                "mimarks-survey",
-                "mimarks-specimen"
-            ],
-            "description": "Nucleic Acid Sequence Report is the root element of all MIGS/MIMS compliant reports as standardized by Genomic Standards Consortium. This field is either eukaryote,bacteria,virus,plasmid,organelle, metagenome,mimarks-survey, or mimarks-specimen",
-            "required": true
-        },
-        "geo_loc_name": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "The geographical origin of the sample as defined by the country or sea name followed by specific region name. Country or sea names should be chosen from the INSDC country list (http://insdc.org/country.html), or the GAZ ontology (v 1.512) (http://purl.bioontology.org/ontology/GAZ)",
-            "title": "geographic location (country and/or sea,region)"
-        },
-        "env_material": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "The environmental material level refers to the material that was displaced by the sample, or material in which a sample was embedded, prior to the sampling event. Environmental material terms are generally mass nouns. Examples include: air, soil, or water. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
-            "title": "environment (material)"
-        },
-        "lat_lon": {
-            "title": "geographic location (latitude and longitude)",
-            "required": true,
-            "type": "object",
-            "properties": {
-                "float_value_0": {
-                    "type": "number"
-                },
-                "float_value_1": {
-                    "type": "number"
-                }
+            "project_name": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Name of the project within which the sequencing was organized",
+                "title": "project name"
             },
-            "description": "The geographical origin of the sample as defined by latitude and longitude. The values should be reported in decimal degrees and in WGS84 system"
+            "assembly": {
+                "title": "assembly",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "assembly_method": {
+                        "title": "assembly_method",
+                        "enum": [
+                            "Celera",
+                            "Phrap",
+                            "TIGR ASSEMBLER",
+                            "Lasergene SeqMan",
+                            "Phred/Phrap/Consed",
+                            "Arachne ASSEMBLER"
+                        ],
+                        "required": true
+                    },
+                    "calulcation_method": {
+                        "required": true,
+                        "type": "string",
+                        "title": "calulcation_method"
+                    },
+                    "estimated_error_rate": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "exclusiveMinimum": false,
+                        "title": "estimated_error_rate",
+                        "required": true
+                    }
+                },
+                "description": "How was the assembly done (e.g. with a text based assembler like phrap or a flowgram assembler); estimated error rate associated with the finished sequences (e.g. error rate of 1 in 1000 bp); and the method of calculation"
+            },
+            "submitted_to_insdc": {
+                "required": true,
+                "type": "boolean",
+                "description": "Depending on the study (large-scale e.g. done with next generation sequencing technology, or small-scale) sequences have to be submitted to SRA (Sequence Read Archive), DRA (DDBJ Read Archive) or via the classical Webin/Sequin systems to Genbank, ENA and DDBJ. Although this field is mandatory, it is meant as a self-test field, therefore it is not necessary to include this field in contextual data submitted to databases",
+                "title": "submitted to insdc"
+            },
+            "seq_meth": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Sequencing method used; e.g. Sanger, pyrosequencing, ABI-solid",
+                "title": "sequencing method"
+            },
+            "collection_date": {
+                "format": "datetime",
+                "required": true,
+                "description": "The time of sampling, either as an instance (single point in time) or interval. In case no exact time is available, the date/time can be right truncated i.e. all of these are valid times: 2008-01-23T19:23:10+00:00; 2008-01-23T19:23:10; 2008-01-23; 2008-01; 2008; Except: 2008-01; 2008 all are ISO8601 compliant",
+                "title": "collection date"
+            },
+            "env_package": {
+                "title": "environmental package",
+                "enum": [
+                    "",
+                    "air",
+                    "built environment",
+                    "host-associated",
+                    "human-associated",
+                    "human-skin",
+                    "human-oral",
+                    "human-gut",
+                    "human-vaginal",
+                    "microbial mat/biofilm",
+                    "misc environment",
+                    "plant-associated",
+                    "sediment",
+                    "soil",
+                    "wastewater/sludge",
+                    "water"
+                ],
+                "description": "MIGS/MIMS/MIMARKS extension for reporting of measurements and observations obtained from one or more of the environments where the sample was obtained. All environmental packages listed here are further defined in separate subtables. By giving the name of the environmental package, a selection of fields can be made from the subtables and can be reported",
+                "required": true
+            },
+            "env_biome": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "Biomes are defined based on factors such as plant structures, leaf types, plant spacing, and other factors like climate. Biome should be treated as the descriptor of the broad ecological context of a sample. Examples include: desert, taiga, deciduous woodland, or coral reef. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (biome)"
+            },
+            "investigation_type": {
+                "title": "investigation type",
+                "enum": [
+                    "",
+                    "eukaryote",
+                    "bacteria_archaea",
+                    "plasmid",
+                    "virus",
+                    "organelle",
+                    "metagenome",
+                    "mimarks-survey",
+                    "mimarks-specimen"
+                ],
+                "description": "Nucleic Acid Sequence Report is the root element of all MIGS/MIMS compliant reports as standardized by Genomic Standards Consortium. This field is either eukaryote,bacteria,virus,plasmid,organelle, metagenome,mimarks-survey, or mimarks-specimen",
+                "required": true
+            },
+            "geo_loc_name": {
+                "pattern": "\\w+:\\w+:.+",
+                "required": true,
+                "type": "string",
+                "description": "The geographical origin of the sample as defined by the country or sea name followed by specific region name. Country or sea names should be chosen from the INSDC country list (http://insdc.org/country.html), or the GAZ ontology (v 1.512) (http://purl.bioontology.org/ontology/GAZ)",
+                "title": "geographic location (country and/or sea,region)"
+            },
+            "env_material": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "The environmental material level refers to the material that was displaced by the sample, or material in which a sample was embedded, prior to the sampling event. Environmental material terms are generally mass nouns. Examples include: air, soil, or water. EnvO (v 2013-06-14) terms can be found via the link: www.environmentontology.org/Browse-EnvO",
+                "title": "environment (material)"
+            },
+            "lat_lon": {
+                "title": "geographic location (latitude and longitude)",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "latitude": {
+                        "required": true,
+                        "type": "number",
+                        "title": "latitude"
+                    },
+                    "longitude": {
+                        "required": true,
+                        "type": "number",
+                        "title": "longitude"
+                    }
+                },
+                "description": "The geographical origin of the sample as defined by latitude and longitude. The values should be reported in decimal degrees and in WGS84 system"
+            }
         }
     },
     "miscellaneous natural or artificial environment": {
+        "type": "object",
+        "properties": {}
     },
     "human-oral": {
+        "type": "object",
+        "properties": {}
     },
     "built environment": {
-        "air_temp": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "temperature of the air at the time of sampling",
-            "title": "air temperature"
-        },
-        "heat_cool_type": {
-            "title": "heating and cooling system type",
-            "enum": [
-                "",
-                "radiant system",
-                "heat pump",
-                "forced air system",
-                "steam forced heat",
-                "wood stove"
-            ],
-            "description": "methods of conditioning or heating a room or building",
-            "required": true
-        },
-        "rel_air_humidity": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "partial vapor and air pressure, density of the vapor and air, or by the actual mass of the vapor and air",
-            "title": "relative air humidity"
-        },
-        "indoor_space": {
-            "title": "indoor space ",
-            "enum": [
-                "",
-                "bedroom",
-                "office",
-                "bathroom",
-                "foyer",
-                "kitchen",
-                "locker room",
-                "hallway",
-                "elevator"
-            ],
-            "description": "a distinguishable space within a structure, the purpose for which discrete areas of a building is used",
-            "required": true
-        },
-        "space_typ_state": {
-            "title": "space typical state ",
-            "enum": [
-                "",
-                "typical occupied",
-                "typically unoccupied"
-            ],
-            "description": "customary or normal state of the space",
-            "required": true
-        },
-        "ventilation_type": {
-            "required": true,
-            "type": "string",
-            "description": "ventilation system used in the sampled premises",
-            "title": "ventilation type"
-        },
-        "filter_type": {
-            "title": "filter type",
-            "enum": [
-                "",
-                "particulate air filter",
-                "chemical air filter",
-                "low-MERV pleated media",
-                "HEPA",
-                "electrostatic",
-                "gas-phase or ultraviolet air treatments."
-            ],
-            "description": "a device which removes solid particulates or airborne molecular contaminants",
-            "required": true
-        },
-        "occup_samp": {
-            "required": true,
-            "type": "integer",
-            "description": "number of occupants present at time of sample within the given space",
-            "title": "occupancy at sampling"
-        },
-        "carb_dioxide": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "carbon dioxide (gas) amount or concentration at the time of sampling",
-            "title": "carbon dioxide"
-        },
-        "occupant_dens_samp": {
-            "required": true,
-            "type": "number",
-            "description": "average number of occupants at time of sampling per square footage",
-            "title": "occupant density at sampling"
-        },
-        "organism_count": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "total count of any organism per gram or volume of sample,should include name of organism followed by count; can include multiple organism counts",
-            "title": "organism count"
-        },
-        "build_occup_type": {
-            "title": "building occupancy type ",
-            "enum": [
-                "",
-                "office",
-                "market",
-                "restaurant",
-                "residence",
-                "school",
-                "residential",
-                "commercial",
-                "low rise",
-                "high rise",
-                "wood framed",
-                "office",
-                "health care",
-                "school",
-                "airport",
-                "sports complex"
-            ],
-            "description": "the primary function for which a building or discrete part of a building is intended to be used",
-            "required": true
-        },
-        "abs_air_humidity": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "actual mass of water vapor - mh20 - present in the air water vapor mixture",
-            "title": "absolute air humidity"
-        },
-        "building_setting": {
-            "title": "building setting",
-            "enum": [
-                "",
-                "urban",
-                "suburban",
-                "exurban",
-                "or rural"
-            ],
-            "description": "a location (geography) where a building is set",
-            "required": true
-        },
-        "light_type": {
-            "title": "light type",
-            "enum": [
-                "",
-                "natural light",
-                "electric light",
-                "or none"
-            ],
-            "description": "application of light to achieve some practical or aesthetic effect. Lighting includes the use of both artificial light sources such as lamps and light fixtures, as well as natural illumination by capturing daylight. Can also include absence of light",
-            "required": true
-        },
-        "typ_occupant_dens": {
-            "required": true,
-            "type": "number",
-            "description": "customary or normal density of occupants",
-            "title": "typical occupant density"
+        "type": "object",
+        "properties": {
+            "air_temp": {
+                "title": "air temperature",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "required": true,
+                        "type": "number",
+                        "title": "value"
+                    },
+                    "unit": {
+                        "title": "unit",
+                        "enum": ["degree Celsius"],
+                        "required": true
+                    }
+                },
+                "description": "temperature of the air at the time of sampling"
+            },
+            "heat_cool_type": {
+                "description": "methods of conditioning or heating a room or building",
+                "title": "heating and cooling system type",
+                "minItems": 1,
+                "items": {
+                    "enum": [
+                        "radiant system",
+                        "heat pump",
+                        "forced air system",
+                        "steam forced heat",
+                        "wood stove"
+                    ]
+                },
+                "required": true,
+                "type": "array"
+            },
+            "rel_air_humidity": {
+                "title": "relative air humidity",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMinimum": false,
+                        "title": "value",
+                        "required": true
+                    },
+                    "unit": {
+                        "title": "unit",
+                        "enum": ["%"],
+                        "required": true
+                    }
+                },
+                "description": "partial vapor and air pressure, density of the vapor and air, or by the actual mass of the vapor and air"
+            },
+            "indoor_space": {
+                "title": "indoor space ",
+                "enum": [
+                    "",
+                    "bedroom",
+                    "office",
+                    "bathroom",
+                    "foyer",
+                    "kitchen",
+                    "locker room",
+                    "hallway",
+                    "elevator"
+                ],
+                "description": "a distinguishable space within a structure, the purpose for which discrete areas of a building is used",
+                "required": true
+            },
+            "space_typ_state": {
+                "title": "space typical state ",
+                "enum": [
+                    "typical occupied",
+                    "typically unoccupied"
+                ],
+                "description": "customary or normal state of the space",
+                "required": true
+            },
+            "ventilation_type": {
+                "minLength": 1,
+                "required": true,
+                "type": "string",
+                "description": "ventilation system used in the sampled premises",
+                "title": "ventilation type"
+            },
+            "filter_type": {
+                "description": "a device which removes solid particulates or airborne molecular contaminants",
+                "title": "filter type",
+                "minItems": 1,
+                "items": {
+                    "enum": [
+                        "particulate air filter",
+                        "chemical air filter",
+                        "low-MERV pleated media",
+                        "HEPA",
+                        "electrostatic",
+                        "gas-phase or ultraviolet air treatments."
+                    ]
+                },
+                "required": true,
+                "type": "array"
+            },
+            "occup_samp": {
+                "required": true,
+                "type": "integer",
+                "description": "number of occupants present at time of sample within the given space",
+                "title": "occupancy at sampling"
+            },
+            "carb_dioxide": {
+                "title": "carbon dioxide",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "required": true,
+                        "type": "number",
+                        "title": "value"
+                    },
+                    "unit": {
+                        "minLength": 1,
+                        "required": true,
+                        "type": "string",
+                        "title": "unit"
+                    }
+                },
+                "description": "carbon dioxide (gas) amount or concentration at the time of sampling"
+            },
+            "occupant_dens_samp": {
+                "required": true,
+                "type": "number",
+                "description": "average number of occupants at time of sampling per square footage",
+                "title": "occupant density at sampling"
+            },
+            "organism_count": {
+                "description": "total count of any organism per gram or volume of sample,should include name of organism followed by count; can include multiple organism counts",
+                "title": "organism count",
+                "minItems": 1,
+                "items": {
+                    "required": [
+                        "measurement",
+                        "value",
+                        "unit"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "value": {"type": "number"},
+                        "unit": {"type": "string"},
+                        "measurement": {"type": "string"}
+                    }
+                },
+                "required": true,
+                "type": "array"
+            },
+            "build_occup_type": {
+                "description": "the primary function for which a building or discrete part of a building is intended to be used",
+                "title": "building occupancy type ",
+                "minItems": 1,
+                "items": {
+                    "enum": [
+                        "office",
+                        "market",
+                        "restaurant",
+                        "residence",
+                        "school",
+                        "residential",
+                        "commercial",
+                        "low rise",
+                        "high rise",
+                        "wood framed",
+                        "office",
+                        "health care",
+                        "school",
+                        "airport",
+                        "sports complex"
+                    ]
+                },
+                "required": true,
+                "type": "array"
+            },
+            "abs_air_humidity": {
+                "title": "absolute air humidity",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "required": true,
+                        "type": "number",
+                        "title": "value"
+                    },
+                    "unit": {
+                        "title": "unit",
+                        "enum": ["kg/kg"],
+                        "required": true
+                    }
+                },
+                "description": "actual mass of water vapor - mh20 - present in the air water vapor mixture"
+            },
+            "building_setting": {
+                "title": "building setting",
+                "enum": [
+                    "",
+                    "urban",
+                    "suburban",
+                    "exurban",
+                    "or rural"
+                ],
+                "description": "a location (geography) where a building is set",
+                "required": true
+            },
+            "light_type": {
+                "description": "application of light to achieve some practical or aesthetic effect. Lighting includes the use of both artificial light sources such as lamps and light fixtures, as well as natural illumination by capturing daylight. Can also include absence of light",
+                "title": "light type",
+                "minItems": 1,
+                "items": {
+                    "enum": [
+                        "natural light",
+                        "electric light",
+                        "or none"
+                    ]
+                },
+                "required": true,
+                "type": "array"
+            },
+            "typ_occupant_dens": {
+                "required": true,
+                "type": "number",
+                "description": "customary or normal density of occupants",
+                "title": "typical occupant density"
+            }
         }
     },
     "air": {
-        "alt": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "the altitude of the sample is the vertical distance between Earth's surface above sea level and the sampled position in the air",
-            "title": "altitude"
+        "type": "object",
+        "properties": {
+            "alt": {
+                "title": "altitude",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "required": true,
+                        "type": "number",
+                        "title": "value"
+                    },
+                    "unit": {
+                        "title": "unit",
+                        "enum": ["m"],
+                        "required": true
+                    }
+                },
+                "description": "the altitude of the sample is the vertical distance between Earth's surface above sea level and the sampled position in the air"
+            }
         }
     },
     "microbial mat/biofilm": {
-        "depth": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Please refer to the definitions of depth in the environmental packages",
-            "title": "geographic location (depth)"
-        },
-        "elev": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "the elevation of the sampling site as measured by the vertical distance from mean sea level",
-            "title": "elevation"
+        "type": "object",
+        "properties": {
+            "depth": {
+                "title": "geographic location (depth)",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMinimum": false,
+                        "title": "value",
+                        "required": true
+                    },
+                    "unit": {
+                        "title": "unit",
+                        "enum": [
+                            "cm",
+                            "m"
+                        ],
+                        "required": true
+                    }
+                },
+                "description": "Please refer to the definitions of depth in the environmental packages"
+            },
+            "elev": {
+                "title": "elevation",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMinimum": false,
+                        "title": "value",
+                        "required": true
+                    },
+                    "unit": {
+                        "title": "unit",
+                        "enum": [
+                            "cm",
+                            "m"
+                        ],
+                        "required": true
+                    }
+                },
+                "description": "the elevation of the sampling site as measured by the vertical distance from mean sea level"
+            }
         }
     },
     "plant-associated": {
+        "type": "object",
+        "properties": {}
     },
     "sediment": {
-        "depth": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "Please refer to the definitions of depth in the environmental packages",
-            "title": "geographic location (depth)"
-        },
-        "elev": {
-            "minLength": 1,
-            "required": true,
-            "type": "string",
-            "description": "the elevation of the sampling site as measured by the vertical distance from mean sea level",
-            "title": "elevation"
+        "type": "object",
+        "properties": {
+            "depth": {
+                "title": "geographic location (depth)",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMinimum": false,
+                        "title": "value",
+                        "required": true
+                    },
+                    "unit": {
+                        "title": "unit",
+                        "enum": [
+                            "cm",
+                            "m"
+                        ],
+                        "required": true
+                    }
+                },
+                "description": "Please refer to the definitions of depth in the environmental packages"
+            },
+            "elev": {
+                "title": "elevation",
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMinimum": false,
+                        "title": "value",
+                        "required": true
+                    },
+                    "unit": {
+                        "title": "unit",
+                        "enum": [
+                            "cm",
+                            "m"
+                        ],
+                        "required": true
+                    }
+                },
+                "description": "the elevation of the sampling site as measured by the vertical distance from mean sea level"
+            }
         }
-    },
-    "file_upload": {
-        "type": "string",
-        "format": "uri"
     }
 }

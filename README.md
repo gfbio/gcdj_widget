@@ -10,12 +10,13 @@
 #!html
 
 <!-- gcdj_widget css and javascript imports -->
-    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-sliderAccess.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <script src="http://www.alpacajs.org/js/alpaca-full.min.js"></script>
+    <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/jquery-2.1.3.min.js"></script>
+    <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/handlebars-1.3.0.min.js"></script>
+    <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/jquery-ui.min.js"></script>
+    <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/jquery-ui-timepicker-addon.min.js"></script>
+    <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/jquery-ui-sliderAccess.js"></script>
+    <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/bootstrap.min.js"></script>
+    <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/alpaca.js"></script>
     <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/gcdj_widget.js"></script>
     <link rel="stylesheet" href="http://alni.mpi-bremen.de/static/gcdj_widget/css/gcdj_widget.css">
 <!-- end of gcdj_widget css and javascript imports -->
@@ -42,7 +43,9 @@ since rendering is finished and DOM access is possible now.
 Right now the widgets configuration provides an id for the submit buttons of the form, to allow the binding of custom events.
 (The id for the actual form submit is "checklist_submit", while the id for the submit button in the packagae/checklist selection step is "select_submit")
 4. Choose to validate the json from the form against the "official" GCDJ validation webservice
-
+5. It is possible to prefill the widgets form fields using two approaches. One is to specify an Url, in 'initialDataLocation',
+pointing to a file that contains the GCDJ conform json-data. The other is to directly
+assign and Javascript object to a variable ('initialData').
 
 ```
 #!html
@@ -54,6 +57,8 @@ Right now the widgets configuration provides an id for the submit buttons of the
       console.log('postrender from html');
    };
    var validateUsingWebservice = true;
+   var initialDataLocation = 'location/of/data.json';
+   var initialData = {};
 </script>
 
 ```
@@ -62,16 +67,16 @@ Right now the widgets configuration provides an id for the submit buttons of the
 Right now GCDJ widget has dependencies to the following components (compare Installation section)
 
 ### Jquery: ###
-* JQuery 2.1.1 release as available via http://code.jquery.com/jquery-2.1.1.min.js
-* Alpaca Version 1.1.3 as available via http://www.alpacajs.org/js/alpaca-full.min.js
+* JQuery 2.1.3
+* Alpaca Version 1.5.7
 
 ### JqueryUI: ###
-* JQueryUI 1.11.1 release as available via http://code.jquery.com/ui/1.11.1/jquery-ui.min.js
-* JQueryUI timepicker add-on as available via //cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js
-* Slider access for timepicker as available via //cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-sliderAccess.js
+* JQueryUI 1.11.1
+* JQueryUI timepicker add-on 1.5.0
+* Slider access for timepicker jquery-ui-sliderAccess.js 0.3
 
 ### Boostrap: ###
-* Bootstap release  3.0.3 javascript as available via //netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"
+* Bootstap release  3.3.2 javascript as available via //netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"
 
 ### GCDJ-Widget: ###
 * The widget javascript sources are delivered via http://alni.mpi-bremen.de/static/gcdj_widget/js/gcdj_widget.js

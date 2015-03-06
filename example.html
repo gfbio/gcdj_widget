@@ -3,38 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>A simple wrapper for GCDJ widget testing</title>
-
     <!--  gcdj_widget css and javascript imports -->
-    <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/jquery-2.1.1.min.js"></script>
+    <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/jquery-2.1.3.min.js"></script>
+    <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/handlebars-1.3.0.min.js"></script>
     <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/jquery-ui.min.js"></script>
     <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/jquery-ui-timepicker-addon.min.js"></script>
     <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/jquery-ui-sliderAccess.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/alpaca-full.min.js"></script>
+    <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/bootstrap.min.js"></script>
+    <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/alpaca.js"></script>
     <script src="http://alni.mpi-bremen.de/static/gcdj_widget/js/gcdj_widget.js"></script>
-
-	<link rel="stylesheet"
-          href="http://alni.mpi-bremen.de/static/gcdj_widget/css/gcdj_widget.css">
-	<!-- end of gcdj_widget css and javascript imports -->
+    <link rel="stylesheet" href="http://alni.mpi-bremen.de/static/gcdj_widget/css/gcdj_widget.css">
+    <!-- end of gcdj_widget css and javascript imports -->
 
     <script>
-
         var targetContainerId = "target_1";
         var checkListFormAction = "theAction";
         var postRenderAction = function () {
             console.log('postrender from html');
         };
-        var validateUsingWebservice = true;
+        var validateUsingWebservice = false;
         var initialDataLocation = 'location/of/data.json';
         var initialData = {};
-
     </script>
 
 </head>
 <body>
 
 <div id="target_1" style="padding: 20px 300px 20px 300px;"></div>
-
 
 </body>
 </html>

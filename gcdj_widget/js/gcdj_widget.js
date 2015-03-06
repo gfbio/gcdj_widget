@@ -1,5 +1,5 @@
 /*!
- GCDJ_WIDGET VERSION 0.0.13
+ GCDJ_WIDGET VERSION 1.0.1
  */
 /*jslint browser: true*/
 /*global $, jQuery, targetContainerId, checkListFormAction, postRenderAction, validateUsingWebservice, initialDataLocation, initialData*/
@@ -11,6 +11,7 @@
 * @default
 */
 var checkListPackagesLocation = 'http://alni.mpi-bremen.de/widget_schemas/checklist_packages';
+//var checkListPackagesLocation = './gcdj_widget/data/schemas/checklist_packages.json';
 
 /**
  * Pointing to the resource that provides the options used by alpaca, corresponding to the MiXS-lists defined above
@@ -19,6 +20,7 @@ var checkListPackagesLocation = 'http://alni.mpi-bremen.de/widget_schemas/checkl
  * @default
  */
 var checkListPackageOptionsLocation = 'http://alni.mpi-bremen.de/widget_options/checklist_options';
+//var checkListPackageOptionsLocation = './gcdj_widget/data/options/checklist_options.json';
 
 /**
  * Pointing to the resource that provides the select-box json-schema used when rendering the selection of package / checklist
@@ -27,6 +29,7 @@ var checkListPackageOptionsLocation = 'http://alni.mpi-bremen.de/widget_options/
  * @default
  */
 var selectSchemaLocation = 'http://alni.mpi-bremen.de/widget_schemas/select';
+//var selectSchemaLocation = './gcdj_widget/data/schemas/select.json';
 
 /**
  * Pointing to the resource that provides the select-box options used when rendering the selection of package / checklist
@@ -35,7 +38,7 @@ var selectSchemaLocation = 'http://alni.mpi-bremen.de/widget_schemas/select';
  * @default
  */
 var selectOptionsLocation = 'http://alni.mpi-bremen.de/widget_options/select';
-
+//var selectOptionsLocation = './gcdj_widget/data/options/select.json';
 
 /**
  * A container object to bundle the URLs of select-schema and options, which will be handled over when calling alcaca-js
@@ -106,7 +109,6 @@ var checkListOptions = {
 var checkListSchema = {
     "description": "Please fill form fields below",
     "title": "Package / Checklist form",
-    "ui": "bootstrap",
     "type": "object",
     "properties": {
         "file_upload": {
@@ -273,6 +275,7 @@ var isInitialDataSet = function () {
  * @default false
  */
 var useWebServiceValidation = function () {
+    'use strict';
     if (isValidationTriggerSet()) {
         return validateUsingWebservice;
     }
@@ -292,6 +295,41 @@ function add_missing_keys(gcdjson) {
     }
 }
 
+
+var addWebServiceValidationEvent = function () {
+    'use strict';
+    $('#checklist_submit').click(function (event) {
+        var gcdjson = {};
+        if (useWebServiceValidation()) {
+            if (!formPassedValidation) {
+                event.preventDefault();
+                gcdjson = globalForm.getValue();
+                add_missing_keys(gcdjson);
+                var url = 'http://alni.mpi-bremen.de/validate?checklist=' + checklist + '&package=' + pack;
+                var jqxhr = $.post(url, {'gcdjson': JSON.stringify(gcdjson)},
+                    function (data) {
+                        formPassedValidation = onSuccess(data);
+                        if (formPassedValidation) {
+                            addJsonFormField(gcdjson);
+                        }
+                    })
+                    .fail(function () {
+                        console.log(' validateJsonViaWebService error ');
+                    })
+                    .always(function () {
+                        console.log(' validateJsonViaWebService finished valid = ' + formPassedValidation);
+                    });
+            }
+        }
+        else {
+            gcdjson = globalForm.getValue();
+            add_missing_keys(gcdjson);
+            addJsonFormField(gcdjson);
+        }
+
+    });
+};
+
 /**
  * This function actually performs the calls to let alpacajs render the form for a given checklist/package combination.
  * Adds custom javascript code that, if provided, is executed after rendering. Adds the feedback-container and
@@ -310,13 +348,18 @@ function renderCheckListForm(prefillData) {
             $.extend(checkListOptions.fields, packageOptions[checklistSelection[i]]);
         }
         if (checkListPackages.hasOwnProperty(checklistSelection[i])) {
-            $.extend(checkListSchema.properties, checkListPackages[checklistSelection[i]]);
+            $.extend(checkListSchema.properties, checkListPackages[checklistSelection[i]].properties);
         }
     }
-    widget_schema.options = checkListOptions;
-    widget_schema.schema = checkListSchema;
+    extract_boolean_fields(checkListSchema.properties);
 
-    // TODO: alpaca widget with fixed package tuple and NO $ref include (automatic ws schema+options)
+
+    widget_schema.view = "bootstrap-edit";
+    // TODO: recherche and discus pros and cons of different views
+    //widget_schema.view = "bootstrap-create";
+    widget_schema.schema = checkListSchema;
+    widget_schema.options = checkListOptions;
+
     if (typeof prefillData !== 'undefined' && !$.isEmptyObject(prefillData)) {
         widget_schema.data = prefillData;
     }
@@ -329,36 +372,9 @@ function renderCheckListForm(prefillData) {
             readSingleFile(this);
         });
         globalForm = form;
+        addWebServiceValidationEvent();
     };
     $('#' + targetContainerId).alpaca(widget_schema);
-
-    if (useWebServiceValidation()) {
-        $('#checklist_submit').click(function (event) {
-            if (!formPassedValidation) {
-                event.preventDefault();
-                var gcdjson = globalForm.getValue();
-                add_missing_keys(gcdjson);
-                var url = 'http://alni.mpi-bremen.de/validate?checklist=' + checklist + '&package=' + pack;
-                var jqxhr = $.post(url, {'gcdjson': JSON.stringify(gcdjson)},
-                    function (data) {
-                        formPassedValidation = onSuccess(data);
-                        if (formPassedValidation) {
-                            addJsonFormField(gcdjson);
-                        }
-                    })
-                    .fail(function () {
-                        console.log(' validateJsonViaWebService error ');
-                    })
-                    .always(function () {
-                        console.log(' validateJsonViaWebService finished valid = ' + formPassedValidation);
-                    });
-            }
-        });
-    }
-    else {
-        var gcdjson = globalForm.getValue();
-        addJsonFormField(gcdjson);
-    }
 }
 
 /**
@@ -427,12 +443,13 @@ function loadAndRenderPackageData() {
         $.getJSON(checkListPackagesLocation),
         $.getJSON(checkListPackageOptionsLocation)
     ).then(function (a, b) {
-        checkListPackages = a[0];
-        packageOptions = b[0];
+        checkListPackages = a[0]; // keep this when omitting select step
+        packageOptions = b[0]; // keep this when omitting select step
         renderSelectForm();
         /***********  omitting select step *************/
-        //checklistSelection.push('air');
-        //checklistSelection.push('me');
+        //checklistSelection.push('built environment');
+        //checklistSelection.push('miens_c');
+        // and
         //renderCheckListForm();
         // or
         //renderCheckListForm(checkListData);

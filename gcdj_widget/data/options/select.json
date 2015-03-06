@@ -23,7 +23,7 @@
             }
         },
         "attributes": {
-            "action": "ACTION",
+            "action": "ACTION-SELECT",
             "onsubmit": "return submitSelectForm(this);",
             "id": "gcdj_select_form",
             "method": "post"
